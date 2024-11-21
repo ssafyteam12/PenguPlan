@@ -5,7 +5,7 @@ import {
 } from "vue-router";
 
 import Layout from "@/components/layout/Layout.vue";
-import Layout2 from "../components/layout/Layout2.vue";
+import MainLayout from "../components/layout/MainLayout.vue";
 import MainView from "@/views/MainView.vue";
 import LoginView from "@/views/User/LoginView.vue";
 import PlanView from "@/views/Plan/PlanView.vue";
@@ -15,7 +15,7 @@ const routes = [
   {
     path: "/",
     component: MainView,
-    meta: { layout: Layout },
+    meta: { layout: MainLayout },
   },
   {
     path: "/home",
