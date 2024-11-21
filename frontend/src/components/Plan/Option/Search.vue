@@ -40,7 +40,7 @@ const handleSearch = async (e?: Event) => {
     e.preventDefault();
   }
   const returnAttractions = await getAttractionBySidoGugun(
-    pStore.sidCode,
+    pStore.sidoCode,
     selectedSigungu.value,
     pStore.content,
     keyword.value
