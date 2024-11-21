@@ -13,7 +13,7 @@ import FullHeart from "@/assets/image/full-heart.png";
 import EmptyHeart from "@/assets/image/empty_heart.png";
 import OptionDialog from "./OptionDialog.vue";
 
-// import NoImage from "@/assets/image/no-image.png";
+import NoImage from "@/assets/image/no-image.png";
 // import OptionDialog from "./OptionDialog.vue";
 
 const dStore = dayStore();
