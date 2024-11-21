@@ -1,5 +1,6 @@
 package com.ssafy.trip.attraction.entity;
 
+import com.ssafy.trip.attraction.dto.AttractionDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -69,4 +70,26 @@ public class Attraction {
 
     @Column(length = 10000)
     private String overview;
+
+
+    public static Attraction from(AttractionDTO attraction) {
+        return Attraction.builder()
+                .no(attraction.getNo())
+                .contentId(attraction.getContentId())
+                .title(attraction.getTitle())
+                .contentTypeId(attraction.getContentTypeId())
+                .areaCode(attraction.getAreaCode())
+                .siGunGuCode(attraction.getSiGunGuCode())
+                .firstImage1(attraction.getFirstImage1())
+                .firstImage2(attraction.getFirstImage2())
+                .mapLevel(attraction.getMapLevel())
+                .latitude(attraction.getLatitude())
+                .longitude(attraction.getLongitude())
+                .tel(attraction.getTel())
+                .addr1(attraction.getAddr1())
+                .addr2(attraction.getAddr2())
+                .homepage(attraction.getHomepage())
+                .overview(attraction.getOverview())
+                .build();
+    }
 }

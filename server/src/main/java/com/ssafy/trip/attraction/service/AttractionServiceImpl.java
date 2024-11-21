@@ -78,7 +78,13 @@ public class AttractionServiceImpl implements AttractionService {
         AttractionDTO attraction =  AttractionDTO.from(attractionRepository.findByNo(attractionNo));
         List<ReviewDTO> reviews = reviewRepository.findByAttractionNo(attractionNo).stream().map(ReviewDTO::from).toList();
         boolean isLiked = attractionLikesRepository.existsByAttractionNoAndUserId(attractionNo, 1L);
-        return AttractionDetailDTO.of(attraction, reviews, generateAIDescription(attractionNo), isLiked);
+        String aiDescription = attraction.getOverview();
+        if (aiDescription == null) {
+            aiDescription = generateAIDescription(attractionNo);
+            attraction.setOverview(aiDescription);
+            attractionRepository.save(Attraction.from(attraction));
+        }
+        return AttractionDetailDTO.of(attraction, reviews, aiDescription, isLiked);
     }
 
     public NearbyAttractionsDTO getNearbyAttractions(int attractionNo) {
