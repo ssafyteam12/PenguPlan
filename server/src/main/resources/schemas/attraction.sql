@@ -146,6 +146,8 @@ CREATE TABLE IF NOT EXISTS `ssafytrip`.`attraction_likes` (
 );
 
 
+drop table trip_attractions;
+drop table trips;
 drop table reviews;
 -- auto-generated definition
 create table reviews
@@ -192,9 +194,6 @@ ALTER TABLE `ssafytrip`.`trips`
     ADD COLUMN `is_public` BOOLEAN NOT NULL DEFAULT FALSE COMMENT '여행 계획 공개 여부',
     ADD COLUMN `copied_count` INT NOT NULL DEFAULT 0 COMMENT '복사된 횟수';
 
-ALTER table 'ssafytrip'.'users'
-    ADD COLUMN 'preference' bigint not null default 0;
-
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- contenttypes 테이블 업데이트
@@ -229,3 +228,47 @@ WHERE content_type_id IN (12, 14, 15, 25, 28, 32, 38, 39);
 
 -- 외래키 제약조건 다시 활성화
 SET FOREIGN_KEY_CHECKS = 1;
+
+
+-- 11월 22일 업데이트!!! 아래부터 실행
+
+
+-- 지역번호 매핑을 위한 임시 테이블 생성
+CREATE TEMPORARY TABLE area_codes (
+                                      area_code INT,
+                                      tel_prefix VARCHAR(4)
+);
+
+-- 주요 도시/지역 지역번호 매핑
+INSERT INTO area_codes VALUES
+                           (1, '02'),   -- 서울
+                           (2, '032'),  -- 인천
+                           (3, '031'),  -- 경기
+                           (4, '033'),  -- 강원
+                           (5, '042'),  -- 대전
+                           (6, '044'),  -- 세종
+                           (7, '041'),  -- 충남
+                           (8, '043'),  -- 충북
+                           (31, '054'), -- 경북
+                           (32, '053'), -- 대구
+                           (34, '055'), -- 경남
+                           (35, '051'), -- 부산
+                           (36, '052'), -- 울산
+                           (37, '062'), -- 광주
+                           (38, '061'), -- 전남
+                           (39, '063'); -- 전북
+
+-- 전화번호 업데이트 (tel이 NULL이거나 빈 문자열인 경우만)
+UPDATE attractions a
+    JOIN area_codes ac ON a.area_code = ac.area_code
+SET a.tel = CONCAT(
+        ac.tel_prefix,
+        '-',
+        LPAD(FLOOR(RAND() * 999), 3, '0'),
+        '-',
+        LPAD(FLOOR(RAND() * 9999), 4, '0')
+            )
+WHERE a.tel IS NULL OR a.tel = '';
+
+-- 임시 테이블 삭제
+DROP TEMPORARY TABLE area_codes;
