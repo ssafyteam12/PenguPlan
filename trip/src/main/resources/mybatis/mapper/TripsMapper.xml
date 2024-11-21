@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.trip.trips.repository.TripsMapper">
+
+    <!-- 결과 매핑 정의 -->
+    <resultMap id="TripResultMap" type="com.ssafy.trip.trips.dto.TripsDto">
+        <id property="tripId" column="trip_id"/>
+        <result property="userId" column="user_id"/>
+        <result property="content" column="content"/>
+        <result property="sidoCode" column="sido_code"/>
+        <result property="startDate" column="start_date"/>
+        <result property="endDate" column="end_date"/>
+        <collection property="attractions" ofType="com.ssafy.trip.trips.dto.TripsDto$AttractionDetail">
+            <result property="no" column="attraction_no"/>
+            <result property="title" column="title"/>
+            <result property="image" column="first_image1"/>
+            <result property="address" column="addr1"/>
+            <result property="latitude" column="latitude"/>
+            <result property="longitude" column="longitude"/>
+            <result property="day" column="day"/>
+            <result property="sequence" column="sequence"/>
+        </collection>
+    </resultMap>
+
+    <insert id="insertTrip" parameterType="com.ssafy.trip.trips.dto.TripsDto" useGeneratedKeys="true" keyProperty="tripId">
+        INSERT INTO trips (user_id, content, sido_code, start_date, end_date)
+        VALUES (#{userId}, #{content}, #{sidoCode}, #{startDate}, #{endDate})
+    </insert>
+
+    <insert id="insertTripAttractions" parameterType="map">
+        INSERT INTO trip_attractions (trip_id, attraction_no, day, sequence)
+        VALUES
+        <foreach collection="tripAttractions" item="attraction" separator=",">
+            (#{tripId}, #{attraction.no}, #{attraction.day}, #{attraction.sequence})
+        </foreach>
+    </insert>
+
+    <select id="getTripById" parameterType="int" resultMap="TripResultMap">
+        SELECT t.trip_id, t.user_id, t.content, t.sido_code, t.start_date, t.end_date,
+               a.attraction_no, b.title, b.first_image1, b.addr1, b.latitude, b.longitude, a.day, a.sequence
+        FROM trips t
+                 LEFT JOIN trip_attractions a ON t.trip_id = a.trip_id
+                 LEFT JOIN attractions b ON a.attraction_no = b.no
+        WHERE t.trip_id = ${tripId}
+    </select>
+
+    <select id="getAllTrips" parameterType="int" resultMap="TripResultMap">
+        SELECT t.trip_id, t.user_id, t.content, t.sido_code, t.start_date, t.end_date,
+               a.attraction_no, b.title, b.first_image1, b.addr1, b.latitude, b.longitude, a.day, a.sequence
+        FROM trips t
+                 LEFT JOIN trip_attractions a ON t.trip_id = a.trip_id
+                 LEFT JOIN attractions b ON a.attraction_no = b.no
+        LIMIT #{offset}, #{size}
+    </select>
+
+    <update id="updateTrip">
+        UPDATE trips
+        SET content = #{tripsDto.content},
+            sido_code = #{tripsDto.sidoCode},
+            start_date = #{tripsDto.startDate},
+            end_date = #{tripsDto.endDate}
+        WHERE trip_id = #{tripId}
+    </update>
+
+    <update id="togglePublic" parameterType="int">
+        UPDATE trips
+        SET is_public = CASE
+                            WHEN is_public = true THEN false
+                            ELSE true
+            END
+        WHERE trip_id = #{tripId}
+    </update>
+
+    <delete id="deleteTripAttraction" parameterType="int">
+        DELETE FROM trip_attractions
+        WHERE trip_id = #{tripId}
+    </delete>
+
+    <delete id="deleteTrip" parameterType="int">
+        DELETE FROM trips
+        WHERE trip_id = #{tripId}
+    </delete>
+
+</mapper>
