@@ -2,6 +2,7 @@
 import { Ref, ref, watchEffect } from "vue";
 import {
   KakaoMap,
+  KakaoMapMarker,
   KakaoMapMarkerPolyline,
   type KakaoMapMarkerListItem,
 } from "vue3-kakao-maps";
@@ -9,17 +10,17 @@ import { dayStore, planStore, attractionStore } from "@/store/store";
 import { storeToRefs } from "pinia";
 import { Attraction } from "@/type/type";
 import { getAttractionByPosition } from "@/api/Attraction/Attraction";
-import MarkImage from "@/assets/image/maker.png";
+import MarkImage from "@/assets/image/marker.png";
 
 const dStore = dayStore();
 const pStore = planStore();
 const aStore = attractionStore();
 const { selectedDay } = storeToRefs(dStore);
-const { lat, lng } = storeToRefs(aStore);
+const { lat, lng, attractionList } = storeToRefs(aStore);
 
 const map = ref<kakao.maps.Map | null>(null);
 
-const attractionList = ref<Attraction[]>([]);
+const selectedAttractionList = ref<Attraction[]>([]);
 
 const image = {
   imageSrc: MarkImage,
@@ -30,11 +31,11 @@ const image = {
 const markerList: Ref<KakaoMapMarkerListItem[]> = ref([]);
 
 watchEffect(() => {
-  attractionList.value = [
+  selectedAttractionList.value = [
     ...pStore.getAttraction(selectedDay.value.toString()),
   ];
 
-  markerList.value = attractionList.value.map(
+  markerList.value = selectedAttractionList.value.map(
     (attraction: any, index: number) => ({
       lat: attraction.latitude,
       lng: attraction.longitude,
@@ -44,19 +45,6 @@ watchEffect(() => {
     })
   );
 });
-
-const addMarker = (): void => {
-  markerList.value.push({
-    lat: 33.4509 + Math.random() * 0.003,
-    lng: 126.571 + Math.random() * 0.003,
-    image,
-    orderBottomMargin: "37px",
-  });
-};
-
-const deleteMarker = (): void => {
-  markerList.value.pop();
-};
 
 const fetchPlaces = async () => {
   if (map.value) {
@@ -106,9 +94,12 @@ const onLoadKakaoMap = (mapRef: kakao.maps.Map) => {
     :lat="lat"
     :lng="lng"
   >
+    <div v-for="attr in attractionList">
+      <KakaoMapMarker :lat="attr.latitude" :lng="attr.longitude" />
+    </div>
     <KakaoMapMarkerPolyline
       :markerList="markerList"
-      :showMarkerOrder="true"
+      :showMarkerOrder="false"
       strokeColor="#C74C5E"
       :strokeOpacity="1"
       strokeStyle="shortdot"

@@ -60,7 +60,6 @@ const handleClick = (attraction) => {
 
 const toggleHeart = async (no: number) => {
   const data = await postAttractionLike(no);
-  console.log("heart = ", data);
   localAttraction.islike = !localAttraction.islike;
 };
 
