@@ -53,8 +53,6 @@ dependencies {
     implementation platform("org.springframework.ai:spring-ai-bom:1.0.0-SNAPSHOT")
     implementation 'org.springframework.ai:spring-ai-openai-spring-boot-starter'
 
-    //gemini
-    implementation 'org.springframework.ai:spring-ai-vertex-ai-gemini-spring-boot-starter'
 
 }
 

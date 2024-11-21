@@ -15,10 +15,7 @@ import com.ssafy.trip.review.entity.Review;
 import com.ssafy.trip.review.entity.ReviewRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.openai.OpenAiChatModel;
-import org.springframework.ai.vertexai.gemini.VertexAiGeminiChatModel;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,7 +31,6 @@ public class AttractionServiceImpl implements AttractionService {
     private final ReviewRepository reviewRepository;
     private final AttractionLikesRepository attractionLikesRepository;
     private final OpenAiChatModel openAiChatModel;
-    private final VertexAiGeminiChatModel vertexAiGeminiChatModel;
 
     public List<AttractionDTO> getAttractionsByPosition(double maxLat, double maxLong, double minLat, double minLong) {
         List<Attraction> attractions = attractionRepository.findAttractionsByPosition(minLat, maxLat, minLong, maxLong);

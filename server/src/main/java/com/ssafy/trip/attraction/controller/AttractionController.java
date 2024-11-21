@@ -1,17 +1,15 @@
 package com.ssafy.trip.attraction.controller;
 
-import com.ssafy.trip.attraction.dto.*;
+import com.ssafy.trip.attraction.dto.AttractionDTO;
+import com.ssafy.trip.attraction.dto.AttractionDetailDTO;
+import com.ssafy.trip.attraction.dto.NearbyAttractionsDTO;
+import com.ssafy.trip.attraction.dto.ResponseAttractionsDTO;
 import com.ssafy.trip.attraction.service.AttractionService;
-
 import com.ssafy.trip.attractionLikes.dto.LikeResponse;
 import com.ssafy.trip.review.dto.ReviewRequest;
 import com.ssafy.trip.review.dto.ReviewResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.ai.chat.model.ChatModel;
-import org.springframework.ai.chat.model.ChatResponse;
-import org.springframework.ai.chat.prompt.Prompt;
-import org.springframework.ai.openai.OpenAiChatOptions;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
