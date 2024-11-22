@@ -23,7 +23,6 @@ export const putMyInfo = async (info: object) => {
 export const getMyLike = async () => {
   try {
     const response = await apiClient.get("/api/v1/users/me/likes");
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error(error);

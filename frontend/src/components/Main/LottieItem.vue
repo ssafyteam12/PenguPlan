@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { defineEmits } from "vue";
 import { LottieAnimation } from "lottie-web-vue";
 import { defineProps } from "vue";
 import { Button } from "@/components/ui/button";
@@ -13,6 +14,7 @@ const props = defineProps({
     default: false,
   },
 });
+defineEmits(["click"]);
 </script>
 
 <template>
@@ -50,6 +52,7 @@ const props = defineProps({
         ></p>
 
         <Button
+          @click="$emit('click', data.category)"
           class="mt-6 bg-gradient-to-r bg-dark-color text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5"
           v-html="props.data.buttonText"
         ></Button>
