@@ -1,10 +1,12 @@
 <script setup>
 import { onMounted, ref } from "vue";
+import { useRouter } from "vue-router";
 import { getMyLike } from "@/api/User/My";
 import { Card, CardContent } from "@/components/ui/card";
 import NoImage from "@/assets/image/no-image.png";
 import { Heart } from "lucide-vue-next";
 
+const router = useRouter();
 const data = ref({});
 onMounted(async () => {
   // const returned = await getMyLike();
