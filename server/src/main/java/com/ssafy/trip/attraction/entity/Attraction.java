@@ -50,10 +50,10 @@ public class Attraction {
     @Column(name = "map_level")
     private Integer mapLevel;
 
-    @Column(precision = 38, scale = 2)
+    @Column(precision = 20, scale = 17)
     private BigDecimal latitude;
 
-    @Column(precision = 38, scale = 2)
+    @Column(precision = 20, scale = 17)
     private BigDecimal longitude;
 
     @Column(length = 20)
