@@ -54,7 +54,6 @@ public class UserService {
                 .username(request.getUsername())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .email(request.getEmail())
-                .preference(0L)
                 .build();
 
         User savedUser = userRepository.save(user);
@@ -139,6 +138,6 @@ public class UserService {
 
     private Long getCurrentUserId() {
 //        return Long.parseLong(SecurityContextHolder.getContext().getAuthentication().getName());
-        return 10L;
+        return 1L;
     }
 }
