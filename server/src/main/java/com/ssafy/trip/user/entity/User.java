@@ -24,15 +24,11 @@ public class User {
     @Column(nullable = false)
     private String email;
 
-    @Column(nullable = false)
-    private Long preference;
-
     @Builder
-    public User(String username, String password, String email, Long preference) {
+    public User(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.preference = preference;
     }
 
     public void updatePassword(String newPassword) {
