@@ -97,7 +97,9 @@ const onLoadKakaoMap = (mapRef: kakao.maps.Map) => {
     <div v-for="attr in attractionList">
       <KakaoMapMarker :lat="attr.latitude" :lng="attr.longitude" />
     </div>
+
     <KakaoMapMarkerPolyline
+      v-if="!markerList"
       :markerList="markerList"
       :showMarkerOrder="false"
       strokeColor="#C74C5E"

@@ -5,8 +5,8 @@ import KakaoMap from "@/components/Plan/Option/KakaoMap.vue";
 import Option from "@/components/Plan/Option/Option.vue";
 import Search from "@/components/Plan/Option/Search.vue";
 import PlanSideBar from "@/components/Plan/MyPlan/PlanSideBar.vue";
-// import { TransitionRoot } from "@headlessui/vue";
 import { MapPin, Calendar, Compass } from "lucide-vue-next";
+import PlanMain from "../../components/Plan/Setting/PlanMain.vue";
 
 const completedSetting = ref(false);
 const toggleCompletedSetting = () => {
@@ -40,43 +40,6 @@ const toggleCompletedSetting = () => {
               </p>
             </div>
 
-            <!-- Feature Cards
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-              <div class="bg-gray-50 rounded-xl p-6 text-center shadow-sm">
-                <div class="inline-block p-3 bg-blue-50 rounded-full mb-4">
-                  <MapPin class="w-6 h-6 text-blue-600" />
-                </div>
-                <h3 class="font-semibold text-gray-800 mb-2">
-                  맞춤 여행지 추천
-                </h3>
-                <p class="text-gray-600">
-                  당신의 취향에 맞는 최적의 여행지를 추천해드립니다
-                </p>
-              </div>
-
-              <div class="bg-gray-50 rounded-xl p-6 text-center shadow-sm">
-                <div class="inline-block p-3 bg-blue-50 rounded-full mb-4">
-                  <Calendar class="w-6 h-6 text-blue-600" />
-                </div>
-                <h3 class="font-semibold text-gray-800 mb-2">
-                  스마트 일정 관리
-                </h3>
-                <p class="text-gray-600">
-                  효율적인 동선과 시간 관리로 완벽한 일정을 계획하세요
-                </p>
-              </div>
-
-              <div class="bg-gray-50 rounded-xl p-6 text-center shadow-sm">
-                <div class="inline-block p-3 bg-blue-50 rounded-full mb-4">
-                  <Compass class="w-6 h-6 text-blue-600" />
-                </div>
-                <h3 class="font-semibold text-gray-800 mb-2">현지 정보 제공</h3>
-                <p class="text-gray-600">
-                  관광지, 맛집, 숙소 등 필요한 모든 정보를 한 눈에
-                </p>
-              </div>
-            </div> -->
-
             <!-- Input Form Section -->
             <div class="p-8 mb-8 flex justify-center items-center">
               <InputModel @complete="toggleCompletedSetting" />
@@ -108,27 +71,7 @@ const toggleCompletedSetting = () => {
       >
         <div v-if="completedSetting" class="h-full flex">
           <!-- Left Section: Map and Sidebar -->
-          <div class="relative flex-grow w-2/3 h-full border-r border-gray-200">
-            <KakaoMap class="w-full h-full" />
-            <PlanSideBar />
-          </div>
-
-          <!-- Right Section: Search and Options -->
-          <div class="w-1/3 h-full flex flex-col bg-white">
-            <!-- Search Bar -->
-            <div class="p-4 border-b border-gray-100">
-              <div class="relative w-full">
-                <Search />
-              </div>
-            </div>
-
-            <!-- Options List -->
-            <div class="flex-1 overflow-hidden">
-              <div class="h-full overflow-y-auto custom-scrollbar">
-                <Option />
-              </div>
-            </div>
-          </div>
+          <PlanMain :isEdit="false" />
         </div>
       </TransitionRoot>
     </div>

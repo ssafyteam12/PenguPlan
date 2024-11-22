@@ -9,9 +9,10 @@ import MainLayout from "../components/layout/MainLayout.vue";
 import MainView from "@/views/MainView.vue";
 import LoginView from "@/views/User/LoginView.vue";
 import PlanView from "@/views/Plan/PlanView.vue";
+import EditPlanView from "@/views/Plan/EditPlanView.vue";
 import MyPageView from "@/views/My/MyPageView.vue";
-import PlanDetailView from "../views/PlanDetail/PlanDetailView.vue";
-import TripsView from "../views/Trips/Trips.vue";
+import PlanDetailView from "@/views/PlanDetail/PlanDetailView.vue";
+import TripsView from "@/views/Trips/Trips.vue";
 
 const routes = [
   {
@@ -47,6 +48,11 @@ const routes = [
   {
     path: "/myplan/:tripId",
     component: PlanDetailView,
+    meta: { layout: Layout },
+  },
+  {
+    path: "/editplan/:tripId",
+    component: EditPlanView,
     meta: { layout: Layout },
   },
 ];

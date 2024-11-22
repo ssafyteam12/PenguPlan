@@ -11,6 +11,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 const aStore = attractionStore();
 const pStore = planStore();
 const { attractionList } = storeToRefs(aStore);
+const { sidoCode, content } = storeToRefs(pStore);
 const isLoading = ref(true);
 const searchQuery = ref("");
 
@@ -18,9 +19,9 @@ const searchQuery = ref("");
 onMounted(async () => {
   try {
     const returnAttractions = await getAttractionBySidoGugun(
-      pStore.sidoCode,
+      sidoCode.value,
       "",
-      pStore.content,
+      content.value,
       ""
     );
     aStore.setAttractionList(returnAttractions.attractions);
