@@ -1,23 +1,12 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 import InputModel from "@/components/Plan/Setting/InputModel.vue";
 import KakaoMap from "@/components/Plan/Option/KakaoMap.vue";
 import Option from "@/components/Plan/Option/Option.vue";
 import Search from "@/components/Plan/Option/Search.vue";
 import PlanSideBar from "@/components/Plan/MyPlan/PlanSideBar.vue";
-import PlanMain from "../../components/Plan/Setting/PlanMain.vue";
-// import { TransitionRoot } from "@headlessui/vue";
 import { MapPin, Calendar, Compass } from "lucide-vue-next";
-
-// defineProps({
-//   isEdit: Boolean,
-// });
-
-// onMounted(() => {
-//   if (isEdit.value) {
-//     completedSetting.value = true;
-//   }
-// });
+import PlanMain from "../../components/Plan/Setting/PlanMain.vue";
 
 const completedSetting = ref(false);
 const toggleCompletedSetting = () => {
@@ -80,8 +69,9 @@ const toggleCompletedSetting = () => {
         leave-from="opacity-100 translate-y-0"
         leave-to="opacity-0 translate-y-4"
       >
-        <div v-if="completedSetting" class="w-full h-full flex">
-          <PlanMain />
+        <div v-if="completedSetting" class="h-full flex">
+          <!-- Left Section: Map and Sidebar -->
+          <PlanMain :isEdit="false" />
         </div>
       </TransitionRoot>
     </div>

@@ -5,13 +5,19 @@ import { Attraction, SendTrip, UserTrips } from "@/type/type";
 // 완료
 export const postUserTrip = async (sendData: Object) => {
   try {
-    console.log("send = ", sendData);
     const response = await apiClient.post<SendTrip>("/api/v1/trips", sendData);
   } catch (error) {
     console.error(error);
   }
 };
 
+export const putUserTrip = async (tripId: number, sendData: Object) => {
+  try {
+    const response = await apiClient.put(`/api/v1/trips/${tripId}`, sendData);
+  } catch (error) {
+    console.error(error);
+  }
+};
 // 완료
 export const getUserTripAll = async () => {
   try {

@@ -11,6 +11,8 @@ export const userStore = defineStore(
     const userEmail = ref<string>("idkhm0728@naver.com");
 
     const loginSetting = (info: User) => {
+      console.log("userinfo = ", info);
+
       alert("loginSetting");
       isLoggedIn.value = true;
       userId.value = info.userId;

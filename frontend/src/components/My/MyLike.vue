@@ -7,7 +7,9 @@ import { Heart } from "lucide-vue-next";
 
 const data = ref({});
 onMounted(async () => {
+  // const returned = await getMyLike();
   data.value = await getMyLike();
+  // data.value = returned.likedAttractions;
 });
 </script>
 
@@ -22,22 +24,22 @@ onMounted(async () => {
     </div>
 
     <div
-      v-if="data.likes?.length"
+      v-if="data.totalLikes"
       class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
     >
       <Card
-        v-for="like in data.likes"
+        v-for="like in data.likedAttractions"
         :key="like.id"
         class="overflow-hidden hover:shadow-lg transition-shadow"
       >
         <img
-          :src="like.image || NoImage"
+          :src="like.firstImage1 || NoImage"
           :alt="like.title"
           class="h-48 w-full object-cover"
         />
         <CardContent class="p-4">
           <h3 class="font-semibold text-lg mb-2">{{ like.title }}</h3>
-          <p class="text-gray-500 text-sm">{{ like.address }}</p>
+          <p class="text-gray-500 text-sm">{{ like.addr1 }}</p>
         </CardContent>
       </Card>
     </div>
