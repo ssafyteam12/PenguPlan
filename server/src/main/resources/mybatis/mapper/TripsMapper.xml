@@ -11,6 +11,7 @@
         <result property="sidoCode" column="sido_code"/>
         <result property="startDate" column="start_date"/>
         <result property="endDate" column="end_date"/>
+        <result property="copiedCount" column="copied_count"/>
         <collection property="attractions" ofType="com.ssafy.trip.trips.dto.TripsDto$AttractionDetail">
             <result property="no" column="attraction_no"/>
             <result property="title" column="title"/>
@@ -37,7 +38,7 @@
     </insert>
 
     <select id="getTripById" parameterType="int" resultMap="TripResultMap">
-        SELECT t.trip_id, t.user_id, t.content, t.sido_code, t.start_date, t.end_date,
+        SELECT t.trip_id, t.user_id, t.content, t.sido_code, t.start_date, t.end_date, t.copied_count,
                a.attraction_no, b.title, b.first_image1, b.addr1, b.latitude, b.longitude, a.day, a.sequence
         FROM trips t
                  LEFT JOIN trip_attractions a ON t.trip_id = a.trip_id
@@ -46,7 +47,7 @@
     </select>
 
     <select id="getAllTrips" parameterType="int" resultMap="TripResultMap">
-        SELECT t.trip_id, t.user_id, t.content, t.sido_code, t.start_date, t.end_date,
+        SELECT t.trip_id, t.user_id, t.content, t.sido_code, t.start_date, t.end_date, t.copied_count,
                a.attraction_no, b.title, b.first_image1, b.addr1, b.latitude, b.longitude, a.day, a.sequence
         FROM trips t
                  LEFT JOIN trip_attractions a ON t.trip_id = a.trip_id

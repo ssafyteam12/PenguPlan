@@ -36,6 +36,7 @@ public class AttractionServiceImpl implements AttractionService {
     public List<AttractionDTO> getAttractionsByPosition(double maxLat, double maxLong, double minLat, double minLong) {
         List<Attraction> attractions = attractionRepository.findAttractionsByPosition(minLat, maxLat, minLong, maxLong);
         Long userId = getCurrentUserId();
+
         return attractions.stream()
                 .map(attraction -> {
                     AttractionDTO dto = AttractionDTO.from(attraction);
@@ -58,6 +59,7 @@ public class AttractionServiceImpl implements AttractionService {
         List<Attraction> attractions = attractionRepository.findAttractionsBySearch(sido, gugun, content, keyword);
         log.info("attractionsSize :" +  attractions.size());
         Long userId = getCurrentUserId();
+
         return attractions.stream()
                 .map(attraction -> {
                     AttractionDTO dto = AttractionDTO.from(attraction);
@@ -115,6 +117,7 @@ public class AttractionServiceImpl implements AttractionService {
     public LikeResponse toggleLike(Integer attractionNo) {
 
         Long userId = getCurrentUserId();
+
 
         // 먼저 attraction 조회
         Attraction attraction = attractionRepository.findById(attractionNo.longValue())
@@ -182,7 +185,10 @@ public class AttractionServiceImpl implements AttractionService {
     }
 
     private Long getCurrentUserId() {
-        return Long.parseLong(SecurityContextHolder.getContext().getAuthentication().getName());
-//        return 1L;
+        String temp = SecurityContextHolder.getContext().getAuthentication().getName();
+        Long userId = 1L;
+        log.info("userId = {}", temp);
+        if (!temp.equals("anonymousUser")) userId = Long.parseLong(temp);
+        return userId;
     }
 }
