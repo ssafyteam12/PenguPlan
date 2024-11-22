@@ -1,16 +1,21 @@
 <!-- PlanSideBar.vue -->
 <script setup lang="ts">
-import { ref } from "vue";
-import { useRouter } from "vue-router";
+import { ref, defineProps } from "vue";
+import { useRoute, useRouter } from "vue-router";
 import { planStore } from "@/store/store";
 import { storeToRefs } from "pinia";
 import SelectedPlan from "./SelectedPlan.vue";
 import Button from "@/components/ui/button/Button.vue";
 import { toPlainObject, extractNoAndTitle } from "@/util/util";
-import { postUserTrip } from "@/api/Plan/Plan";
+import { postUserTrip, putUserTrip } from "@/api/Plan/Plan";
 import { toast } from "vue-sonner";
 import { ChevronLeft, ChevronRight } from "lucide-vue-next";
 
+defineProps({
+  isEdit: Boolean,
+});
+
+const route = useRoute();
 const router = useRouter();
 const pStore = planStore();
 const { plans, sidoCode, content, startDate, endDate } = storeToRefs(pStore);
@@ -42,6 +47,33 @@ const handleSubmit = async () => {
     router.push("/mypage");
   } catch (error) {
     toast.error("여행 일정 등록 실패", {
+      description: "다시 시도해주세요",
+    });
+  }
+};
+
+const handleEdit = async () => {
+  const sendAttraction = extractNoAndTitle(
+    toPlainObject(Object.values(plans.value).flat())
+  );
+
+  const sendObject = {
+    sidoCode: sidoCode.value,
+    content: content.value,
+    startDate: startDate.value,
+    endDate: endDate.value,
+    attractions: [...sendAttraction],
+  };
+
+  try {
+    await putUserTrip(route.params.tripId, sendObject);
+    toast("여행 일정 수정 성공!", {
+      description: "마이페이지에서 일정을 확인하세요",
+    });
+    pStore.initiate();
+    router.push(`/myplan/${route.params.tripId}`);
+  } catch (error) {
+    toast.error("여행 일정 수정 실패", {
       description: "다시 시도해주세요",
     });
   }
@@ -78,12 +110,21 @@ const handleSubmit = async () => {
       </div>
 
       <!-- Save Button -->
-      <div class="p-4 border-t border-gray-100 bg-white">
+      <div v-if="!isEdit" class="p-4 border-t border-gray-100 bg-white">
         <Button
           @click="handleSubmit"
           class="w-full py-3 bg-dark-color hover:bg-dark-color/90 text-white font-medium rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
         >
           일정 저장하기
+        </Button>
+      </div>
+
+      <div v-if="isEdit" class="p-4 border-t border-gray-100 bg-white">
+        <Button
+          @click="handleEdit"
+          class="w-full py-3 bg-dark-color hover:bg-dark-color/90 text-white font-medium rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
+        >
+          일정 수정하기
         </Button>
       </div>
     </div>

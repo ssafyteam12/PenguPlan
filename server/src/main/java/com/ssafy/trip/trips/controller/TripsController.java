@@ -25,6 +25,7 @@ public class TripsController {
     @PostMapping
     public ResponseEntity<?> createPlans(@RequestBody TripsRequest tripsRequest){
         Long userId = getCurrentUserId();
+        System.out.println(tripsRequest.getContent() +" is content.");
         TripsDto tripsDto = TripsDto.of(tripsRequest, userId.intValue());
         tripsService.savePlan(tripsDto);
         return ResponseEntity.ok("success");
@@ -77,6 +78,7 @@ public class TripsController {
     }
 
     private Long getCurrentUserId() {
+
         String temp = SecurityContextHolder.getContext().getAuthentication().getName();
         Long userId = 1L;
         log.info("userId = {}", temp);

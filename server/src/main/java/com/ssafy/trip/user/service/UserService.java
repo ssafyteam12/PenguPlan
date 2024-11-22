@@ -140,6 +140,7 @@ public class UserService {
     }
 
     private Long getCurrentUserId() {
+
         String temp = SecurityContextHolder.getContext().getAuthentication().getName();
         Long userId = 1L;
         log.info("userId = {}", temp);

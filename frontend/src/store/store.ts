@@ -18,13 +18,13 @@ export const dayStore = defineStore("day", () => {
 });
 
 export const planStore = defineStore("plan", () => {
-  const content = ref<string>("12");
+  const content = ref<number>(1);
   const sidoCode = ref<number>(1);
   const startDate = ref<string>("2024-11-11");
   const endDate = ref<string>("2024-12-21");
   const keyword = ref<string>("");
 
-  const setContent = (newContent: string) => {
+  const setContent = (newContent: number) => {
     content.value = newContent;
   };
 
@@ -44,21 +44,22 @@ export const planStore = defineStore("plan", () => {
   const plans = ref<{ [key: string]: Attraction[] }>({});
 
   const initiate = () => {
-    content.value = "12";
+    content.value = 1;
     sidoCode.value = 1;
     keyword.value = "";
     plans.value = {};
+  };
+
+  const setPlan = (newPlan: any) => {
+    plans.value = newPlan;
   };
 
   const addAttraction = (day: string, attraction: Attraction) => {
     if (!plans.value[day]) {
       plans.value[day] = [];
     }
+
     if (!plans.value[day].find((att) => att.no === attraction.no)) {
-      // const newId =
-      //   "sequence" in attraction
-      //     ? attraction.sequence
-      //     : plans.value[day].length + 1;
       const newId = plans.value[day].length + 1;
       plans.value[day].push({
         ...attraction,
@@ -91,6 +92,7 @@ export const planStore = defineStore("plan", () => {
     setSidoCode,
     setDate,
     setKeyword,
+    setPlan,
 
     plans,
     addAttraction,
