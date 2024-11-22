@@ -242,6 +242,7 @@ const handleCopyTrip = async (tripId: number) => {
     await copyTrip(tripId);
     alert("여행 일정이 복사되었습니다!");
     selectedTrip.value = null; // 복사 후 모달 닫기
+    location.reload();
   } catch (error) {
     alert("복사 중 오류가 발생했습니다.");
   }
