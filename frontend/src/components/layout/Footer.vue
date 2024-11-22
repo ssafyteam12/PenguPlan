@@ -8,9 +8,13 @@ const currentYear = new Date().getFullYear();
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div class="space-y-4">
           <div class="flex items-center space-x-2">
-            <img alt="SSAFY TRIP" class="w-8 h-8" />
+            <img
+              src="/src/assets/image/penguin.png"
+              alt="SSAFY TRIP"
+              class="w-8 h-8 mr-2"
+            />
             <!-- 흰색 로고 이미지 추가 필요 -->
-            <h2 class="text-2xl font-bold">SSAFY TRIP</h2>
+            <h2 class="text-2xl font-bold">PenguTrip</h2>
           </div>
           <p class="text-blue-200">여행의 모든 순간을 함께합니다</p>
         </div>

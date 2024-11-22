@@ -32,9 +32,14 @@ const handleLogout = () => {
   <header
     class="flex items-center justify-between px-4 py-3 z-50 sticky top-0 bg-transparent backdrop-blur-sm w-full"
   >
+    <img
+      src="/src/assets/image/penguin.png"
+      alt="SSAFY TRIP"
+      class="w-8 h-8 mr-2"
+    />
     <router-link to="/">
       <div class="font-bold text-xl text-dark-color drop-shadow-md">
-        SSAFY TRIP
+        PENGUTRIP
       </div>
     </router-link>
 
