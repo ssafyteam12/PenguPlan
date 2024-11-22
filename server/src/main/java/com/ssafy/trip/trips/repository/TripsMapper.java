@@ -24,4 +24,6 @@ public interface TripsMapper {
     List<TripsDto> getAllTrips(int offset, int size);
 
     void togglePublic(int tripId);
+
+    void updateCopied(int tripId);
 }

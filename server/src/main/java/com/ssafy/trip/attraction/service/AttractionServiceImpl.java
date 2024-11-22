@@ -153,8 +153,6 @@ public class AttractionServiceImpl implements AttractionService {
         }
     }
 
-
-
     // AI 설명 생성 메소드 추가
     public String generateAIDescription(int attractionNo) {
         HashMap<Integer, String> tourTypes = new HashMap<>();

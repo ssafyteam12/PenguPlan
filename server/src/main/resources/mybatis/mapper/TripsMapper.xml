@@ -63,6 +63,12 @@
         WHERE trip_id = #{tripId}
     </update>
 
+    <update id="updateCopied">
+        UPDATE trips
+        SET copied_count = copied_count + 1
+        WHERE trip_id = #{tripId}
+    </update>
+
     <update id="togglePublic" parameterType="int">
         UPDATE trips
         SET is_public = CASE
