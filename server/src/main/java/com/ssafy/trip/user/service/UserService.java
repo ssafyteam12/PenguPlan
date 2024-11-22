@@ -16,6 +16,7 @@ import com.ssafy.trip.user.exceptions.UserNotFoundException;
 import com.ssafy.trip.user.repository.UserRepository;
 import com.ssafy.trip.user.repository.UserTripRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -25,6 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -81,6 +83,7 @@ public class UserService {
 
     public UserResponse getUserInfo() {
         Long userId = getCurrentUserId();
+        log.info("userId {} login", userId);
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException("User not found"));
         return UserResponse.from(user);
@@ -137,7 +140,7 @@ public class UserService {
     }
 
     private Long getCurrentUserId() {
-//        return Long.parseLong(SecurityContextHolder.getContext().getAuthentication().getName());
-        return 1L;
+        return Long.parseLong(SecurityContextHolder.getContext().getAuthentication().getName());
+//        return 1L;
     }
 }

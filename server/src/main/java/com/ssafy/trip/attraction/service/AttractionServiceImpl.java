@@ -16,6 +16,7 @@ import com.ssafy.trip.review.entity.ReviewRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.openai.OpenAiChatModel;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -183,7 +184,7 @@ public class AttractionServiceImpl implements AttractionService {
     }
 
     private Long getCurrentUserId() {
-//        return Long.parseLong(SecurityContextHolder.getContext().getAuthentication().getName());
-        return 1L;
+        return Long.parseLong(SecurityContextHolder.getContext().getAuthentication().getName());
+//        return 1L;
     }
 }
