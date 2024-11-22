@@ -1,7 +1,6 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import { Button } from "@/components/ui/button";
-// import { Parallax } from "vue3-parallax/src";
 
 const props = defineProps({
   activeSection: {
