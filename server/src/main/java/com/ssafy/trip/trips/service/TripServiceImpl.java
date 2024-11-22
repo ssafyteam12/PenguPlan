@@ -5,6 +5,7 @@ import com.ssafy.trip.trips.repository.TripsMapper;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -83,7 +84,7 @@ public class TripServiceImpl implements TripsService {
     }
 
     private Long getCurrentUserId() {
-//        return Long.parseLong(SecurityContextHolder.getContext().getAuthentication().getName());
-        return 1L;
+        return Long.parseLong(SecurityContextHolder.getContext().getAuthentication().getName());
+//        return 1L;
     }
 }

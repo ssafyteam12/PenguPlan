@@ -41,6 +41,9 @@ public class JwtTokenProvider {
 
     public boolean validateToken(String token) {
         try {
+            if (token != null && token.startsWith("Bearer ")) {
+                token = token.substring(7);
+            }
             Jwts.parserBuilder().setSigningKey(SECRET_KEY).build().parseClaimsJws(token);
             return true;
         } catch (MalformedJwtException ex) {

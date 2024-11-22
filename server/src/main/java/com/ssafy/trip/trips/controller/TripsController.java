@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -76,7 +77,7 @@ public class TripsController {
     }
 
     private Long getCurrentUserId() {
-//        return Long.parseLong(SecurityContextHolder.getContext().getAuthentication().getName());
-        return 1L;
+        return Long.parseLong(SecurityContextHolder.getContext().getAuthentication().getName());
+//        return 1L;
     }
 }
