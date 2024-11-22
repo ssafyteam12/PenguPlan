@@ -1,7 +1,6 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import { Button } from "@/components/ui/button";
-// import { Parallax } from "vue3-parallax/src";
 
 const props = defineProps({
   activeSection: {
@@ -36,12 +35,10 @@ onMounted(() => {
 
 <template>
   <div class="min-h-screen relative overflow-hidden">
-    <!-- Background gradient -->
     <div
       class="absolute inset-0 bg-gradient-to-b from-sky-100 via-blue-50 to-white"
     ></div>
 
-    <!-- Animated SVG Background -->
     <div class="absolute inset-0">
       <svg
         width="100%"
@@ -49,7 +46,6 @@ onMounted(() => {
         viewBox="0 0 1000 600"
         preserveAspectRatio="xMidYMid slice"
       >
-        <!-- Cloud animations -->
         <g class="clouds">
           <path
             class="cloud cloud1"

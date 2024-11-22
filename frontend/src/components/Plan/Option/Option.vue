@@ -47,7 +47,7 @@ const filteredAttractions = computed(() => {
     <div class="sticky top-0 z-10 bg-white shadow-sm rounded-lg p-4">
       <Input
         v-model="searchQuery"
-        placeholder="관광지 또는 주소 검색..."
+        placeholder="결과 내 검색 ... "
         class="w-full transition-all duration-300 focus:ring-2 focus:ring-blue-500"
       />
     </div>
