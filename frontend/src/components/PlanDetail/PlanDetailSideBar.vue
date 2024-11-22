@@ -61,7 +61,7 @@ onMounted(async () => {
               {{ attraction.title }}
             </div>
             <div class="text-sm text-gray-500 truncate">
-              명소 {{ attraction.addr1 }}
+              {{ attraction.address }}
             </div>
           </div>
         </div>
