@@ -77,6 +77,6 @@ public class TripsController {
 
     private Long getCurrentUserId() {
 //        return Long.parseLong(SecurityContextHolder.getContext().getAuthentication().getName());
-        return 10L;
+        return 1L;
     }
 }

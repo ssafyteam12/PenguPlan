@@ -11,6 +11,8 @@ import LoginView from "@/views/User/LoginView.vue";
 import PlanView from "@/views/Plan/PlanView.vue";
 import MyPageView from "@/views/My/MyPageView.vue";
 import PlanDetailView from "../views/PlanDetail/PlanDetailView.vue";
+import TripsView from "../views/Trips/Trips.vue";
+
 const routes = [
   {
     path: "/",
@@ -30,6 +32,11 @@ const routes = [
   {
     path: "/plan",
     component: PlanView,
+    meta: { layout: Layout },
+  },
+  {
+    path: "/trips",
+    component: TripsView,
     meta: { layout: Layout },
   },
   {

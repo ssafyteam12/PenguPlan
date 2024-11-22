@@ -36,7 +36,7 @@ const handleLogout = () => {
       <div class="font-bold text-xl text-point-color">SSAFY TRIP</div>
     </router-link>
     <nav class="hidden md:flex space-x-6 ml-6 items-center">
-      <router-link to="/">
+      <router-link to="/trips">
         <Button variant="link" class="text-base"> 둘러보기 </Button>
       </router-link>
       <div class="text-dark-color text-lg">|</div>
