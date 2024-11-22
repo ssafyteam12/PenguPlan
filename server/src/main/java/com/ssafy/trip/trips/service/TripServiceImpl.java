@@ -85,6 +85,5 @@ public class TripServiceImpl implements TripsService {
 
     private Long getCurrentUserId() {
         return Long.parseLong(SecurityContextHolder.getContext().getAuthentication().getName());
-//        return 1L;
     }
 }

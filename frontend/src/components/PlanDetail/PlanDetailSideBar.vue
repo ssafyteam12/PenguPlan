@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { planStore } from "@/store/store";
 import { getUserTripById } from "@/api/Plan/Plan";
 import { Attraction } from "@/type/type";
 import Button from "@/components/ui/button/Button.vue";
 
+const router = useRouter();
 const route = useRoute();
 const plans = ref<Attraction>([]);
 const data = ref<Attraction[]>([]);
@@ -35,7 +36,11 @@ onMounted(async () => {
 
 <template>
   <div class="h-full overflow-y-auto p-4 bg-gray-50 relative">
-    <Button variant="outline">수정하기</Button>
+    <Button
+      variant="outline"
+      @click="router.push(`/editplan/${route.params.tripId}`)"
+      >수정하기</Button
+    >
     <div v-for="(attractions, day) in plans" :key="day" class="mb-6">
       <h2 class="text-lg font-bold mb-3">{{ day }} 일차</h2>
 

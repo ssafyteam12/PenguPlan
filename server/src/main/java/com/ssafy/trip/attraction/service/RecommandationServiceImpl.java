@@ -17,7 +17,6 @@ public class RecommandationServiceImpl implements RecommandationService {
     @Override
     public AttractionRecommendationResponse getRecommandations() {
         Long userId = getCurrentUserId();
-
         return null;
     }
 

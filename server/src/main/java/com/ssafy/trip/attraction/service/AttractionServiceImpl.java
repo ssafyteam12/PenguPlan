@@ -185,6 +185,5 @@ public class AttractionServiceImpl implements AttractionService {
 
     private Long getCurrentUserId() {
         return Long.parseLong(SecurityContextHolder.getContext().getAuthentication().getName());
-//        return 1L;
     }
 }
