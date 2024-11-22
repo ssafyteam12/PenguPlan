@@ -49,7 +49,7 @@ const toggleCompletedSetting = () => {
             <div class="text-center text-gray-600">
               <p>
                 이미 계획된 여행이 있으신가요?
-                <a href="#" class="text-blue-600 hover:underline"
+                <a href="/mypage" class="text-blue-600 hover:underline"
                   >내 여행 보기</a
                 >
               </p>

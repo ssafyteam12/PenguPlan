@@ -14,15 +14,15 @@
           v-model="size"
           class="px-4 py-2 border rounded-lg bg-white shadow-sm hover:shadow transition-all"
         >
-          <option :value="10">10개씩</option>
-          <option :value="20">20개씩</option>
-          <option :value="30">30개씩</option>
+          <option :value="9">small</option>
+          <option :value="18">middle</option>
+          <option :value="27">large</option>
         </select>
       </div>
     </div>
     <div class="grid grid-cols-2 lg:grid-cols-3 gap-6">
       <div
-        v-for="trip in trips"
+        v-for="trip in trips.sort((a, b) => a.tripId - b.tripId).slice(0, size)"
         :key="trip.tripId"
         class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
       >
