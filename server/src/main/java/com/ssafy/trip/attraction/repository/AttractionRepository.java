@@ -17,8 +17,10 @@ public interface AttractionRepository extends JpaRepository<Attraction, Long> {
     @Query(value = "SELECT * FROM attractions a " +
             "WHERE a.latitude BETWEEN :minLatitude AND :maxLatitude " +
             "AND a.longitude BETWEEN :minLongitude AND :maxLongitude " +
-            "ORDER BY ABS((:maxLongitude + :minLongitude) / 2 - a.longitude) + ABS((:maxLatitude + :minLatitude) / 2 - a.latitude)" +
-            "LIMIT 50",
+            "ORDER BY \n" +
+            "  POWER((:maxLongitude + :minLongitude) / 2 - a.longitude, 2) + \n" +
+            "  POWER((:maxLatitude + :minLatitude) / 2 - a.latitude, 2) " +
+            "LIMIT 100",
             nativeQuery = true)
     List<Attraction> findAttractionsByPosition(
             @Param("minLatitude") double minLatitude,
@@ -34,7 +36,7 @@ public interface AttractionRepository extends JpaRepository<Attraction, Long> {
             "(:content = -1 OR a.content_type_id = :content) AND" +
             "(:keyword IS NULL OR :keyword = '' OR a.title LIKE CONCAT('%', :keyword, '%')) " +
             "order by rand() " +
-            "LIMIT 50",
+            "LIMIT 100",
             nativeQuery = true)
     List<Attraction> findAttractionsBySearch(@Param("sido") int sido,
                                              @Param("gugun") int gugun,
