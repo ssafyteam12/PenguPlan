@@ -8,6 +8,7 @@ export interface Info {
   title: string;
   content: string;
   buttonText: string;
+  category: string;
 }
 
 // 여행지 카테고리
