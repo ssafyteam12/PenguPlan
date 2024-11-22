@@ -85,7 +85,10 @@ public class TripServiceImpl implements TripsService {
 
 
     private Long getCurrentUserId() {
-        return Long.parseLong(SecurityContextHolder.getContext().getAuthentication().getName());
-//        return 1L;
+        String temp = SecurityContextHolder.getContext().getAuthentication().getName();
+        Long userId = 1L;
+        log.info("userId = {}", temp);
+        if (!temp.equals("anonymousUser")) userId = Long.parseLong(temp);
+        return userId;
     }
 }
