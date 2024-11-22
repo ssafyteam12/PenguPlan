@@ -26,6 +26,4 @@ public class RecommandationServiceImpl implements RecommandationService {
 //        return 1L;
     }
 
-
-
 }

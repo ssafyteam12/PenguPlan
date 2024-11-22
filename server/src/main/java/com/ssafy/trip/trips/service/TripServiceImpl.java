@@ -54,7 +54,7 @@ public class TripServiceImpl implements TripsService {
     public Integer copyPlan(int tripId) {
         // 1. 기존 여행 계획 조회
         TripsDto originalTrip = tripsMapper.getTripById(tripId);
-
+        tripsMapper.updateCopied(tripId);
         // 2. 새로운 여행 계획 객체 생성 (기존 데이터 복사)
         TripsDto newTrip = TripsDto.builder()
                 .userId(getCurrentUserId().intValue()) // 현재 로그인한 사용자 ID
@@ -82,6 +82,7 @@ public class TripServiceImpl implements TripsService {
         tripsMapper.togglePublic(tripId);
         return true;
     }
+
 
     private Long getCurrentUserId() {
         return Long.parseLong(SecurityContextHolder.getContext().getAuthentication().getName());
