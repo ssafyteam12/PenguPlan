@@ -1,5 +1,5 @@
 <script setup>
-import { defineEmits } from "vue";
+import { ref, defineEmits, onMounted, onUnmounted } from "vue";
 import {
   Dialog,
   DialogContent,
@@ -30,15 +30,15 @@ const submitForm = () => {
       </Button>
     </DialogTrigger>
 
-    <DialogContent class="sm:max-w-[600px] max-h-[80vh] overflow-y-auto">
+    <DialogContent class="sm:max-w-[700px] max-h-[80vh] overflow-y-auto">
       <DialogHeader>
         <DialogTitle class="text-2xl font-bold text-gray-800 text-center pb-2">
           여행 설정하기
         </DialogTitle>
-        <div class="w-16 h-1 bg-blue-600 mx-auto mb-6 rounded-full"></div>
-        <DialogDescription class="text-center text-gray-600 mb-8">
+        <div class="w-16 h-1 bg-blue-600 mx-auto mb-0 rounded-full"></div>
+        <!-- <DialogDescription class="text-center text-gray-600 mb-2">
           목적지와 일정을 선택하고 나만의 여행을 계획해보세요
-        </DialogDescription>
+        </DialogDescription> -->
       </DialogHeader>
 
       <div class="w-full bg-gray-50 rounded-xl">

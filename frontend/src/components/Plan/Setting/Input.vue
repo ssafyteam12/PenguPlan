@@ -78,10 +78,13 @@ const onSubmit = () => {
 
       <!-- Step 3: 날짜 선택 -->
       <div class="w-[80%] mx-[10%] flex-shrink-0 p-6">
-        <label class="text-lg font-medium text-gray-700"
-          >언제 여행하시나요?</label
-        >
-        <RangeCalendar v-model="selectedDate" class="rounded-md border" />
+        <h2 class="text-2xl font-semibold text-gray-800 mb-6">
+          어디로 떠나시나요?
+        </h2>
+
+        <div class="flex justify-center">
+          <RangeCalendar v-model="selectedDate" class="rounded-md border" />
+        </div>
         <button
           @click="onSubmit"
           class="mt-6 w-full py-3 rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 text-white text-sm font-semibold hover:opacity-90 transition-opacity duration-300"

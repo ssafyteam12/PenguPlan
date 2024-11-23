@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, defineProps } from "vue";
+import { ref, defineProps, onMounted, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { planStore } from "@/store/store";
 import { storeToRefs } from "pinia";
@@ -10,14 +10,30 @@ import { postUserTrip, putUserTrip } from "@/api/Plan/Plan";
 import { toast } from "vue-sonner";
 import { ChevronLeft, ChevronRight } from "lucide-vue-next";
 
-defineProps({
-  isEdit: Boolean,
-});
+const props = defineProps<{
+  isEdit: boolean;
+}>();
 
 const route = useRoute();
 const router = useRouter();
 const pStore = planStore();
-const { plans, sidoCode, content, startDate, endDate } = storeToRefs(pStore);
+const { plans, sidoCode, content, startDate, endDate, titleContent } =
+  storeToRefs(pStore);
+
+onMounted(() => {
+  if (props.isEdit) {
+    tripTitle.value = titleContent.value;
+  }
+});
+
+watch(
+  () => titleContent.value,
+  (newValue) => {
+    if (props.isEdit) {
+      tripTitle.value = newValue;
+    }
+  }
+);
 
 const showSidebar = ref(false);
 const tripTitle = ref("");
@@ -39,6 +55,8 @@ const handleSubmit = async () => {
   const sendAttraction = extractNoAndTitle(
     toPlainObject(Object.values(plans.value).flat())
   );
+
+  pStore.setTitleContent(content.value);
 
   const sendObject = {
     sidoCode: sidoCode.value,
@@ -137,7 +155,7 @@ const handleEdit = async () => {
       <div v-if="!isEdit" class="p-4 border-t border-gray-100 bg-white">
         <Button
           @click="handleSubmit"
-          :disabled="!tripTitle.trim()"
+          :disabled="!tripTitle"
           class="w-full py-3 bg-dark-color hover:bg-dark-color/90 text-white font-medium rounded-lg transition-colors duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           일정 저장하기
@@ -147,7 +165,7 @@ const handleEdit = async () => {
       <div v-if="isEdit" class="p-4 border-t border-gray-100 bg-white">
         <Button
           @click="handleEdit"
-          :disabled="!tripTitle.trim()"
+          :disabled="!tripTitle"
           class="w-full py-3 bg-dark-color hover:bg-dark-color/90 text-white font-medium rounded-lg transition-colors duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           일정 수정하기
