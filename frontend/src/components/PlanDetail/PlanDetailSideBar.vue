@@ -42,7 +42,7 @@ onMounted(async () => {
       >수정하기</Button
     >
     <div v-for="(attractions, day) in plans" :key="day" class="mb-6">
-      <h2 class="text-lg font-bold mb-3">{{ day }} 일차</h2>
+      <h2 v-if="day != 0" class="text-lg font-bold mb-3">{{ day }} 일차</h2>
 
       <div class="relative">
         <div
