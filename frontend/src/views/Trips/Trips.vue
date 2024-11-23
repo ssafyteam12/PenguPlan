@@ -53,6 +53,7 @@
               <div class="relative overflow-hidden rounded-lg">
                 <img
                   :src="attraction.image"
+                  @error="(e) => ((e.target as HTMLImageElement).src = NoImage)"
                   :alt="attraction.title"
                   class="w-full h-36 object-cover transform group-hover:scale-105 transition-transform duration-300"
                 />
@@ -173,6 +174,7 @@
               >
                 <img
                   :src="attraction.image"
+                  @error="(e) => ((e.target as HTMLImageElement).src = NoImage)"
                   :alt="attraction.title"
                   class="w-48 h-32 object-cover rounded-lg flex-shrink-0"
                 />
@@ -202,6 +204,7 @@
 <script setup lang="ts">
 import { ref, onMounted, watch } from "vue";
 import { getPublicTrips, copyTrip, getUserTripById } from "@/api/Plan/Plan";
+import NoImage from "@/assets/image/no-image.png";
 
 interface Attraction {
   no: number;

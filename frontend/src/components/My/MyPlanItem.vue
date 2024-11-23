@@ -51,7 +51,7 @@ const deletePlan = async (tripId) => {
             </h3>
             <div class="flex items-center text-gray-500 mb-4">
               <Calendar class="h-4 w-4 mr-2" />
-              <span>{{ trip.date }}</span>
+              <span>{{ trip.startDate }} ~ {{ trip.endDate }}</span>
             </div>
             <div class="flex items-center text-gray-500">
               <MapPin class="h-4 w-4 mr-2" />

@@ -86,7 +86,7 @@ const addReview = async () => {
 
     <DialogContent
       v-if="!isLoading"
-      class="max-w-5xl max-h-[90vh] overflow-auto"
+      class="max-w-5xl max-h-[90vh] overflow-auto font-main"
     >
       <DialogHeader>
         <DialogTitle class="text-3xl font-bold text-gray-800 mb-6">

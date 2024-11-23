@@ -28,7 +28,7 @@ export const sidoList: Sido[] = [
   { id: 5, name: "광주", img: CityImage5 },
   { id: 6, name: "부산", img: CityImage6 },
   { id: 7, name: "울산", img: CityImage7 },
-  { id: 8, name: "세종시", img: CityImage8 },
+  { id: 8, name: "세종", img: CityImage8 },
   { id: 31, name: "경기도", img: CityImage9 },
   { id: 32, name: "강원도", img: CityImage10 },
   { id: 33, name: "충청북도", img: CityImage11 },
