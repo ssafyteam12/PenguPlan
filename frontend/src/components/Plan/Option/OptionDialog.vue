@@ -1,6 +1,6 @@
 <!-- Modal.vue -->
 <script setup>
-import { onMounted, defineProps, ref, watch } from "vue";
+import { onMounted, defineProps, defineEmits, ref } from "vue";
 import {
   Dialog,
   DialogContent,
@@ -32,6 +32,8 @@ const props = defineProps({
   attractionNo: Number,
 });
 
+defineEmits(["close"]);
+
 const attraction = ref({});
 const nearAttraction = ref([]);
 const isOpen = ref(true);
@@ -58,7 +60,6 @@ const handleAttractionClick = async (selectedAttraction) => {
   isLoading.value = false;
 };
 
-
 const addReview = async () => {
   const send = {
     attractionNo: props.attractionNo,
@@ -72,8 +73,8 @@ const addReview = async () => {
 </script>
 
 <template>
-  <Dialog v-if="isOpen" open>
-    <DialogTitle>상세정보</DialogTitle>
+  <Dialog open>
+    <DialogTitle></DialogTitle>
     <DialogContent v-if="isLoading" class="max-w-4xl">
       <div class="space-y-4">
         <Skeleton class="h-8 w-3/4" />
@@ -142,12 +143,11 @@ const addReview = async () => {
                     :key="nAttraction.no"
                     class="md:basis-1/2 lg:basis-1/3"
                   >
-                  <OptionDialogNear
+                    <OptionDialogNear
                       :attraction="nAttraction"
                       @click="handleAttractionClick(nAttraction)"
-                      />
+                    />
                   </CarouselItem>
-                  
                 </CarouselContent>
               </Carousel>
             </div>
@@ -155,16 +155,17 @@ const addReview = async () => {
         </DialogDescription>
       </DialogHeader>
 
+      <!-- @click="isOpen = !isOpen" -->
+
       <DialogFooter class="mt-8">
         <Button
           variant="outline"
-          @click="isOpen = !isOpen"
           class="px-6 py-2 text-base"
+          @click="$emit('close')"
         >
           닫기
         </Button>
       </DialogFooter>
     </DialogContent>
-    
   </Dialog>
 </template>

@@ -14,7 +14,6 @@ import EmptyHeart from "@/assets/image/empty_heart.png";
 import OptionDialog from "./OptionDialog.vue";
 
 import NoImage from "@/assets/image/no-image.png";
-// import OptionDialog from "./OptionDialog.vue";
 
 const dStore = dayStore();
 const pStore = planStore();
@@ -32,21 +31,12 @@ const localAttraction = reactive({ ...props.attraction });
 const showDetail = ref<boolean>(false);
 const isHovered = ref(false);
 
-const toggleShowDetail = () => {
-  showDetail.value = !showDetail.value;
-};
-
 watch(
   () => props.attraction,
   (newAttraction) => {
     Object.assign(localAttraction, newAttraction);
   }
 );
-
-const detailData = ref<any>({});
-const getDetailData = async (attractionNo: number) => {
-  detailData.value = await getAttractionDetail(attractionNo);
-};
 
 // 관광지 추가
 const addAttraction = (attraction) => {
@@ -62,8 +52,6 @@ const toggleHeart = async (no: number) => {
   const data = await postAttractionLike(no);
   localAttraction.islike = !localAttraction.islike;
 };
-
-// ... rest of the existing logic ...
 </script>
 
 <template>
@@ -91,7 +79,7 @@ const toggleHeart = async (no: number) => {
       <div class="flex-grow">
         <div class="flex justify-between items-start">
           <h3
-            @click="toggleShowDetail"
+            @click="showDetail = true"
             class="text-lg font-semibold text-gray-800 hover:text-blue-600 transition-colors duration-200 cursor-pointer"
           >
             {{ attraction.title }}
@@ -141,7 +129,11 @@ const toggleHeart = async (no: number) => {
     </div>
   </div>
 
-  <OptionDialog v-if="showDetail" :attractionNo="attraction.no" />
+  <OptionDialog
+    v-if="showDetail"
+    :attractionNo="attraction.no"
+    @close="showDetail = false"
+  />
 </template>
 
 <style scoped>

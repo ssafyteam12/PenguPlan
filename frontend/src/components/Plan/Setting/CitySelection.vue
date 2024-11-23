@@ -1,13 +1,15 @@
 <script setup>
-import { ref } from "vue";
+import { ref, defineEmits, watch } from "vue";
 import { sidoList } from "./location";
-const selectedCity = ref("");
+import { Button } from "@/components/ui/button";
 
-const selectCity = (cityId) => {
-  selectedCity.value = cityId;
+const selectedCity = ref(1);
+
+const selectCity = (id) => {
+  selectedCity.value = id;
 };
 
-defineEmits(["update:modelValue"]);
+defineEmits(["next"]);
 </script>
 
 <template>
@@ -26,7 +28,7 @@ defineEmits(["update:modelValue"]);
         ]"
       >
         <div class="flex flex-col gap-3">
-          <div class="bg-base-color">
+          <div class="bg-base-color p-2">
             <img :src="city.img" />
           </div>
           <div>
@@ -36,4 +38,10 @@ defineEmits(["update:modelValue"]);
       </button>
     </div>
   </div>
+  <Button
+    @click="$emit('next', selectedCity)"
+    class="mx-6 mb-6 w-[calc(100%-48px)] py-3 rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 text-white text-sm font-semibold hover:opacity-90 transition-opacity duration-300"
+  >
+    다음
+  </Button>
 </template>

@@ -2,25 +2,42 @@
 import { Sido, Sigungu } from "@/type/type";
 
 import CityImage1 from "@/assets/image/cities/seoul.png";
+import CityImage2 from "@/assets/image/cities/incheon.png";
+import CityImage3 from "@/assets/image/cities/daejeon.png";
+import CityImage4 from "@/assets/image/cities/daegu.png";
+import CityImage5 from "@/assets/image/cities/gwangju.png";
+import CityImage6 from "@/assets/image/cities/busan.png";
+import CityImage7 from "@/assets/image/cities/ulsan.png";
+import CityImage8 from "@/assets/image/cities/sejong.png";
+import CityImage9 from "@/assets/image/cities/gyungi.png";
+import CityImage10 from "@/assets/image/cities/gangwon.png";
+import CityImage11 from "@/assets/image/cities/chungbuk.png";
+import CityImage12 from "@/assets/image/cities/chungnam.png";
+import CityImage13 from "@/assets/image/cities/gyungbuk.png";
+import CityImage14 from "@/assets/image/cities/gyungnam.png";
+import CityImage15 from "@/assets/image/cities/jeonbuk.png";
+import CityImage16 from "@/assets/image/cities/jeonnam.png";
+import CityImage17 from "@/assets/image/cities/jeju.png";
+
 // 시/도 데이터
 export const sidoList: Sido[] = [
   { id: 1, name: "서울", img: CityImage1 },
-  { id: 2, name: "인천", img: CityImage1 },
-  { id: 3, name: "대전", img: CityImage1 },
-  { id: 4, name: "대구", img: CityImage1 },
-  { id: 5, name: "광주", img: CityImage1 },
-  { id: 6, name: "부산", img: CityImage1 },
-  { id: 7, name: "울산", img: CityImage1 },
-  { id: 8, name: "세종시", img: CityImage1 },
-  { id: 31, name: "경기도", img: CityImage1 },
-  { id: 32, name: "강원도", img: CityImage1 },
-  { id: 33, name: "충청북도", img: CityImage1 },
-  { id: 34, name: "충청남도", img: CityImage1 },
-  { id: 35, name: "경상북도", img: CityImage1 },
-  { id: 36, name: "경상남도", img: CityImage1 },
-  { id: 37, name: "전라북도", img: CityImage1 },
-  { id: 38, name: "전라남도", img: CityImage1 },
-  { id: 39, name: "제주도", img: CityImage1 },
+  { id: 2, name: "인천", img: CityImage2 },
+  { id: 3, name: "대전", img: CityImage3 },
+  { id: 4, name: "대구", img: CityImage4 },
+  { id: 5, name: "광주", img: CityImage5 },
+  { id: 6, name: "부산", img: CityImage6 },
+  { id: 7, name: "울산", img: CityImage7 },
+  { id: 8, name: "세종시", img: CityImage8 },
+  { id: 31, name: "경기도", img: CityImage9 },
+  { id: 32, name: "강원도", img: CityImage10 },
+  { id: 33, name: "충청북도", img: CityImage11 },
+  { id: 34, name: "충청남도", img: CityImage12 },
+  { id: 35, name: "경상북도", img: CityImage13 },
+  { id: 36, name: "경상남도", img: CityImage14 },
+  { id: 37, name: "전라북도", img: CityImage15 },
+  { id: 38, name: "전라남도", img: CityImage16 },
+  { id: 39, name: "제주도", img: CityImage17 },
 ];
 
 // 시/군/구 데이터
