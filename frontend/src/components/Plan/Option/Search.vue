@@ -50,8 +50,10 @@ const handleSearch = async (e?: Event) => {
 
   // 전체 선택인 경우 빈 문자열로 처리
   const sidoCode = selectedSido.value === "all" ? "" : selectedSido.value;
-  const sigunguCode = selectedSigungu.value === "all" ? "" : selectedSigungu.value;
-  const contentType = selectedContent.value === "all" ? "" : selectedContent.value;
+  const sigunguCode =
+    selectedSigungu.value === "all" ? "" : selectedSigungu.value;
+  const contentType =
+    selectedContent.value === "all" ? "" : selectedContent.value;
 
   const returnAttractions = await getAttractionBySidoGugun(
     sidoCode,
@@ -71,7 +73,6 @@ const isGugunDisabled = computed(() => {
 // 시도 변경 시 시군구 초기화
 const handleSidoChange = (value: string) => {
   selectedSido.value = value;
-  console.log(value);
   selectedSigungu.value = "all";
 };
 </script>
@@ -83,7 +84,10 @@ const handleSidoChange = (value: string) => {
       <div class="grow-[2]">
         <FormField v-slot="{ componentField }" name="sido">
           <FormItem>
-            <Select v-model="selectedSido" @update:modelValue="handleSidoChange">
+            <Select
+              v-model="selectedSido"
+              @update:modelValue="handleSidoChange"
+            >
               <FormControl>
                 <SelectTrigger>
                   <SelectValue placeholder="시/도 선택" />
@@ -112,14 +116,20 @@ const handleSidoChange = (value: string) => {
       <div class="grow-[2]">
         <FormField v-slot="{ componentField }" name="gugun">
           <FormItem>
-            <Select 
-              v-model="selectedSigungu" 
+            <Select
+              v-model="selectedSigungu"
               v-bind="componentField"
               :disabled="isGugunDisabled"
             >
               <FormControl>
                 <SelectTrigger>
-                  <SelectValue :placeholder="isGugunDisabled ? '시/도를 먼저 선택하세요' : '시/군/구 선택'" />
+                  <SelectValue
+                    :placeholder="
+                      isGugunDisabled
+                        ? '시/도를 먼저 선택하세요'
+                        : '시/군/구 선택'
+                    "
+                  />
                 </SelectTrigger>
               </FormControl>
               <SelectContent>
@@ -139,7 +149,7 @@ const handleSidoChange = (value: string) => {
             <FormMessage />
           </FormItem>
         </FormField>
-      </div>  
+      </div>
 
       <!-- 카테고리 선택 -->
       <div class="grow-[2]">

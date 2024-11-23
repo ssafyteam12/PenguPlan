@@ -101,10 +101,7 @@ const toggleHeart = async (no: number) => {
             </button>
 
             <Button
-              @click.stop="
-                console.log('저장한 데이터 ::: ', attraction);
-                addAttraction(attraction);
-              "
+              @click.stop="addAttraction(attraction)"
               variant="ghost"
               size="icon"
               class="rounded-full hover:bg-blue-50 hover:text-blue-600 transition-all duration-200"
