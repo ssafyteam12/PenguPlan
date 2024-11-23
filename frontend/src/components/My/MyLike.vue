@@ -2,12 +2,19 @@
 import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 import { getMyLike } from "@/api/User/My";
+import { getAttractionDetail } from "@/api/Attraction/Attraction";
 import { Card, CardContent } from "@/components/ui/card";
 import NoImage from "@/assets/image/no-image.png";
 import { Heart } from "lucide-vue-next";
+import OptionDialog from "../Plan/Option/OptionDialog.vue";
+import MyLikeItem from "./MyLikeItem.vue";
 
 const router = useRouter();
+const showDetail = ref(false);
 const data = ref({});
+
+const isDialogOpen = ref([]);
+
 onMounted(async () => {
   // const returned = await getMyLike();
   data.value = await getMyLike();
@@ -29,10 +36,14 @@ onMounted(async () => {
       v-if="data.totalLikes"
       class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
     >
-      <Card
+      <div v-for="like in data.likedAttractions">
+        <MyLikeItem :item="like" />
+      </div>
+      <!-- <Card
         v-for="like in data.likedAttractions"
         :key="like.id"
         class="overflow-hidden hover:shadow-lg transition-shadow"
+        @click="handleAttractionClick(like)"
       >
         <img
           :src="like.firstImage1 || NoImage"
@@ -43,7 +54,8 @@ onMounted(async () => {
           <h3 class="font-semibold text-lg mb-2">{{ like.title }}</h3>
           <p class="text-gray-500 text-sm">{{ like.addr1 }}</p>
         </CardContent>
-      </Card>
+        <OptionDialog v-if="showDetail" :attractionNo="like.no" />
+      </Card> -->
     </div>
 
     <div v-else class="text-center py-12 bg-gray-50 rounded-lg">

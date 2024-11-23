@@ -24,6 +24,8 @@ export const planStore = defineStore("plan", () => {
   const endDate = ref<string>("2024-12-21");
   const keyword = ref<string>("");
 
+  const titleContent = ref<string>("huhuh");
+
   const setContent = (newContent: number) => {
     content.value = newContent;
   };
@@ -39,6 +41,10 @@ export const planStore = defineStore("plan", () => {
 
   const setKeyword = (newKeyword: string) => {
     keyword.value = newKeyword;
+  };
+
+  const setTitleContent = (newTitle: string) => {
+    titleContent.value = newTitle;
   };
 
   const plans = ref<{ [key: string]: Attraction[] }>({});
@@ -88,11 +94,13 @@ export const planStore = defineStore("plan", () => {
     startDate,
     endDate,
     keyword,
+    titleContent,
     setContent,
     setSidoCode,
     setDate,
     setKeyword,
     setPlan,
+    setTitleContent,
 
     plans,
     addAttraction,
