@@ -38,6 +38,7 @@ const deletePlan = async (tripId) => {
       <div class="w-48 h-48">
         <img
           :src="trip.attractions[0]?.firstImage1 || NoImage"
+          @error="NoImage"
           :alt="trip.content"
           class="w-full h-full object-cover"
         />

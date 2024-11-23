@@ -7,13 +7,10 @@ export const userStore = defineStore(
   () => {
     const isLoggedIn = ref<boolean>(false);
     const userId = ref<number>(1);
-    const userName = ref<string>("강희민");
-    const userEmail = ref<string>("idkhm0728@naver.com");
+    const userName = ref<string>("");
+    const userEmail = ref<string>("");
 
     const loginSetting = (info: User) => {
-      console.log("userinfo = ", info);
-
-      alert("loginSetting");
       isLoggedIn.value = true;
       userId.value = info.userId;
       userName.value = info.username;
