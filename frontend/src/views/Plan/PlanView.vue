@@ -1,9 +1,20 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import InputModel from "@/components/Plan/Setting/InputModel.vue";
 import PlanMain from "../../components/Plan/Setting/PlanMain.vue";
 import { TransitionRoot } from "@headlessui/vue";
+
+// 새로고침 방지 메시지 설정
+const handleBeforeUnload = (event) => {
+  event.preventDefault();
+  event.returnValue = ""; // 일부 브라우저에서 메시지 표시
+};
+
+// 새로고침 방지 활성화
+onMounted(() => {
+  window.addEventListener("beforeunload", handleBeforeUnload);
+});
 
 const router = useRouter();
 const completedSetting = ref(false);
