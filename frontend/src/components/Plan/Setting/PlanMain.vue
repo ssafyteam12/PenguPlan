@@ -22,8 +22,8 @@ defineProps({
         <Search />
       </div>
 
-      <div class="flex-1 overflow-hidden">
-        <div class="overflow-y-auto custom-scrollbar">
+      <div class="flex-1 h-full overflow-hidden">
+        <div class="overflow-y-auto h-full custom-scrollbar">
           <Option />
         </div>
       </div>
