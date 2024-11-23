@@ -47,7 +47,7 @@ watchEffect(() => {
         class="flex flex-col items-center justify-center py-10 text-gray-500"
       >
         <span class="text-sm">아직 선택된 여행지가 없습니다</span>
-        <span class="text-xs mt-1">왼쪽 지도에서 여행지를 선택해주세요</span>
+        <span class="text-xs mt-1">오른쪽 지도에서 여행지를 선택해주세요</span>
       </div>
     </ScrollArea>
   </div>

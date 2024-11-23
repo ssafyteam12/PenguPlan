@@ -14,8 +14,6 @@ defineProps({
   isEdit: Boolean,
 });
 
-
-
 const route = useRoute();
 const router = useRouter();
 const pStore = planStore();
@@ -158,4 +156,3 @@ const handleEdit = async () => {
     </div>
   </div>
 </template>
-
