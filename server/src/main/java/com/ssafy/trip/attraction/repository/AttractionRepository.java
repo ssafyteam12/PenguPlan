@@ -20,7 +20,7 @@ public interface AttractionRepository extends JpaRepository<Attraction, Long> {
             "ORDER BY \n" +
             "  POWER((:maxLongitude + :minLongitude) / 2 - a.longitude, 2) + \n" +
             "  POWER((:maxLatitude + :minLatitude) / 2 - a.latitude, 2) " +
-            "LIMIT 100",
+            "LIMIT 60",
             nativeQuery = true)
     List<Attraction> findAttractionsByPosition(
             @Param("minLatitude") double minLatitude,
@@ -36,7 +36,7 @@ public interface AttractionRepository extends JpaRepository<Attraction, Long> {
             "(:content = -1 OR a.content_type_id = :content) AND" +
             "(:keyword IS NULL OR :keyword = '' OR a.title LIKE CONCAT('%', :keyword, '%')) " +
             "order by rand() " +
-            "LIMIT 100",
+            "LIMIT 60",
             nativeQuery = true)
     List<Attraction> findAttractionsBySearch(@Param("sido") int sido,
                                              @Param("gugun") int gugun,
@@ -50,7 +50,7 @@ public interface AttractionRepository extends JpaRepository<Attraction, Long> {
             "FROM attractions a " +
             "HAVING distance <= :distance " +
             "ORDER BY distance " +
-            "LIMIT 30",
+            "LIMIT 10",
             nativeQuery = true)
     List<Attraction> findNearbyAttractions(
             @Param("latitude") double latitude,
