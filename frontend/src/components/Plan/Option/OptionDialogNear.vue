@@ -6,10 +6,12 @@ import { Navigation, ArrowRight } from "lucide-vue-next";
 defineProps({
   attraction: Object,
 });
+const emit = defineEmits(["click"]);
+
 </script>
 
 <template>
-  <div class="group cursor-pointer">
+  <div class="group cursor-pointer" @click="$emit('click', attraction)">
     <div
       class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
     >
@@ -42,7 +44,7 @@ defineProps({
         </h3>
 
         <!-- Action Button -->
-        <div class="flex items-center justify-between mt-4">
+        <div class="flex items-center justify-between mt-4" >
           <button
             class="flex items-center gap-2 text-sm text-blue-600 font-medium group-hover:gap-3 transition-all"
           >
@@ -63,3 +65,4 @@ defineProps({
   overflow: hidden;
 }
 </style>
+

@@ -1,4 +1,3 @@
-<!-- PlanSideBar.vue -->
 <script setup lang="ts">
 import { ref, defineProps } from "vue";
 import { useRoute, useRouter } from "vue-router";
@@ -15,17 +14,30 @@ defineProps({
   isEdit: Boolean,
 });
 
+
+
 const route = useRoute();
 const router = useRouter();
 const pStore = planStore();
 const { plans, sidoCode, content, startDate, endDate } = storeToRefs(pStore);
 
 const showSidebar = ref(false);
+const tripTitle = ref("");
+
 const toggleSidebar = () => {
   showSidebar.value = !showSidebar.value;
 };
 
+const updateContent = () => {
+  content.value = tripTitle.value;
+};
+
 const handleSubmit = async () => {
+  if (!tripTitle.value.trim()) {
+    toast.error("여행 제목을 입력해주세요");
+    return;
+  }
+
   const sendAttraction = extractNoAndTitle(
     toPlainObject(Object.values(plans.value).flat())
   );
@@ -53,6 +65,11 @@ const handleSubmit = async () => {
 };
 
 const handleEdit = async () => {
+  if (!tripTitle.value.trim()) {
+    toast.error("여행 제목을 입력해주세요");
+    return;
+  }
+
   const sendAttraction = extractNoAndTitle(
     toPlainObject(Object.values(plans.value).flat())
   );
@@ -81,7 +98,6 @@ const handleEdit = async () => {
 </script>
 
 <template>
-  <!-- Sliding Sidebar -->
   <div
     class="fixed top-[50px] left-0 h-screen-minus-50 transition-all duration-300 ease-in-out"
     :class="[
@@ -105,6 +121,16 @@ const handleEdit = async () => {
     <div
       class="w-[450px] h-full bg-white shadow-xl rounded-r-lg flex flex-col overflow-hidden"
     >
+      <div class="p-4 border-b border-gray-100">
+        <input
+          v-model="tripTitle"
+          type="text"
+          placeholder="여행 일정의 제목을 입력하세요"
+          class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-dark-color focus:border-transparent"
+          @input="updateContent"
+        />
+      </div>
+
       <div class="flex-1 overflow-hidden">
         <SelectedPlan />
       </div>
@@ -113,7 +139,8 @@ const handleEdit = async () => {
       <div v-if="!isEdit" class="p-4 border-t border-gray-100 bg-white">
         <Button
           @click="handleSubmit"
-          class="w-full py-3 bg-dark-color hover:bg-dark-color/90 text-white font-medium rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
+          :disabled="!tripTitle.trim()"
+          class="w-full py-3 bg-dark-color hover:bg-dark-color/90 text-white font-medium rounded-lg transition-colors duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           일정 저장하기
         </Button>
@@ -122,7 +149,8 @@ const handleEdit = async () => {
       <div v-if="isEdit" class="p-4 border-t border-gray-100 bg-white">
         <Button
           @click="handleEdit"
-          class="w-full py-3 bg-dark-color hover:bg-dark-color/90 text-white font-medium rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
+          :disabled="!tripTitle.trim()"
+          class="w-full py-3 bg-dark-color hover:bg-dark-color/90 text-white font-medium rounded-lg transition-colors duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           일정 수정하기
         </Button>
@@ -130,3 +158,4 @@ const handleEdit = async () => {
     </div>
   </div>
 </template>
+

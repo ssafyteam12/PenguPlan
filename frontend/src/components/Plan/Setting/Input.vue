@@ -128,7 +128,7 @@ const onSubmit = form.handleSubmit(async (values) => {
                     v-for="sido in sidoList"
                     :key="sido.id"
                   >
-                    <div class="bg-main-color">{{ sido.name }}</div>
+                    <div>{{ sido.name }}</div>
                   </SelectItem>
                 </SelectGroup>
               </SelectContent>
