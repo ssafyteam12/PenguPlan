@@ -43,7 +43,7 @@ const filteredAttractions = computed(() => {
 </script>
 
 <template>
-  <div class="flex flex-col gap-4 p-4 bg-gray-50 min-h-screen">
+  <div class="flex flex-col gap-4 p-4 bg-gray-50 h-full">
     <!-- Search Bar -->
     <div class="sticky top-0 z-10 bg-white shadow-sm rounded-lg p-4">
       <Input
@@ -71,7 +71,7 @@ const filteredAttractions = computed(() => {
     </div>
 
     <!-- Content -->
-    <ScrollArea v-else class="flex-grow rounded-lg">
+    <ScrollArea v-else class="flex-grow rounded-lg h-full">
       <div class="space-y-3 p-2">
         <TransitionGroup name="list" tag="div" class="space-y-3">
           <div
