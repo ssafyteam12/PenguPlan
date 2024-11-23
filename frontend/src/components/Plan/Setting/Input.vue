@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<!-- <script setup lang="ts">
 import { type Ref, ref, defineEmits } from "vue";
 import { planStore } from "@/store/store";
 import { storeToRefs } from "pinia";
@@ -108,7 +108,6 @@ const onSubmit = form.handleSubmit(async (values) => {
       class="flex transition-transform duration-500 ease-in-out"
       :style="{ transform: `translateX(-${currentStep * 100}%)` }"
     >
-      <!-- Step 1 -->
       <div class="w-[400px] flex-shrink-0 p-6">
         <label class="text-lg font-medium text-gray-700"
           >여행지를 선택하세요!</label
@@ -145,7 +144,6 @@ const onSubmit = form.handleSubmit(async (values) => {
         </Button>
       </div>
 
-      <!-- Step 2 -->
       <div class="w-[400px] flex-shrink-0 p-6">
         <label class="text-lg font-medium text-gray-700"
           >무엇을 보러 가시나요?</label
@@ -182,7 +180,6 @@ const onSubmit = form.handleSubmit(async (values) => {
         </Button>
       </div>
 
-      <!-- Step 3 -->
       <div class="w-[400px] flex-shrink-0 p-6">
         <label class="text-lg font-medium text-gray-700"
           >언제 여행하시나요?</label
@@ -207,4 +204,78 @@ const onSubmit = form.handleSubmit(async (values) => {
   </div>
 </template>
 
-<style scoped></style>
+<style scoped></style> -->
+<script setup>
+import { ref } from "vue";
+import { Button } from "@/components/ui/button";
+import CitySelection from "./CitySelection.vue";
+import CategorySelection from "./CategorySelection.vue";
+import { RangeCalendar } from "@/components/ui/range-calendar";
+
+const currentStep = ref(0);
+const selectedCity = ref("");
+const selectedCategory = ref("");
+const dateValue = ref("");
+
+const nextStep = () => {
+  if (currentStep.value < 2) {
+    currentStep.value++;
+  }
+};
+
+const onSubmit = () => {
+  // 폼 제출 로직
+  console.log({
+    city: selectedCity.value,
+    category: selectedCategory.value,
+    dates: dateValue.value,
+  });
+};
+</script>
+
+<template>
+  <div
+    class="relative w-full mx-auto bg-white rounded-lg overflow-hidden font-main"
+  >
+    <div
+      class="flex transition-transform duration-500 ease-in-out"
+      :style="{ transform: `translateX(-${currentStep * 100}%)` }"
+    >
+      <!-- Step 1: 도시 선택 -->
+      <div class="w-[80%] mx-[10%] flex-shrink-0">
+        <CitySelection v-model="selectedCity" />
+        <Button
+          @click="nextStep"
+          class="mx-6 mb-6 w-[calc(100%-48px)] py-3 rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 text-white text-sm font-semibold hover:opacity-90 transition-opacity duration-300"
+        >
+          다음
+        </Button>
+      </div>
+
+      <!-- Step 2: 카테고리 선택 -->
+      <div class="w-[80%] mx-[10%] flex-shrink-0">
+        <CategorySelection v-model="selectedCategory" />
+        <Button
+          @click="nextStep"
+          class="mx-6 mb-6 w-[calc(100%-48px)] py-3 rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 text-white text-sm font-semibold hover:opacity-90 transition-opacity duration-300"
+        >
+          다음
+        </Button>
+      </div>
+
+      <!-- Step 3: 날짜 선택 -->
+      <div class="w-[80%] mx-[10%] flex-shrink-0 p-6">
+        <label class="text-lg font-medium text-gray-700"
+          >언제 여행하시나요?</label
+        >
+        <RangeCalendar v-model="dateValue" class="rounded-md border" />
+        <Button
+          @click="onSubmit"
+          class="mt-6 w-full py-3 rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 text-white text-sm font-semibold hover:opacity-90 transition-opacity duration-300"
+        >
+          제출
+        </Button>
+      </div>
+    </div>
+  </div>
+</template>

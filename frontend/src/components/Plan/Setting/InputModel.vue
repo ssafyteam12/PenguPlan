@@ -30,7 +30,7 @@ const submitForm = () => {
       </Button>
     </DialogTrigger>
 
-    <DialogContent class="sm:max-w-[600px]">
+    <DialogContent class="sm:max-w-[600px] max-h-[80vh] overflow-y-auto">
       <DialogHeader>
         <DialogTitle class="text-2xl font-bold text-gray-800 text-center pb-2">
           여행 설정하기
@@ -41,7 +41,7 @@ const submitForm = () => {
         </DialogDescription>
       </DialogHeader>
 
-      <div class="bg-gray-50 p-6 rounded-xl">
+      <div class="w-full bg-gray-50 rounded-xl">
         <Input @submit-form="submitForm" />
       </div>
 
