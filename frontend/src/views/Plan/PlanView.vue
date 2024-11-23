@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 import InputModel from "@/components/Plan/Setting/InputModel.vue";
 import KakaoMap from "@/components/Plan/Option/KakaoMap.vue";
 import Option from "@/components/Plan/Option/Option.vue";
@@ -8,6 +9,7 @@ import PlanSideBar from "@/components/Plan/MyPlan/PlanSideBar.vue";
 import { MapPin, Calendar, Compass } from "lucide-vue-next";
 import PlanMain from "../../components/Plan/Setting/PlanMain.vue";
 
+const router = useRouter();
 const completedSetting = ref(false);
 const toggleCompletedSetting = () => {
   completedSetting.value = true;
@@ -49,7 +51,9 @@ const toggleCompletedSetting = () => {
             <div class="text-center text-gray-600">
               <p>
                 이미 계획된 여행이 있으신가요?
-                <a href="/mypage" class="text-blue-600 hover:underline"
+                <a
+                  @click="router.push('/mypage')"
+                  class="text-blue-600 hover:underline"
                   >내 여행 보기</a
                 >
               </p>

@@ -15,6 +15,7 @@ export const infoList: Info[] = [
       "<br>드래그 앤 드롭으로 손쉽게 일정을 수정할 수 있어요." +
       "<br>교통, 소요시간까지 한 번에 확인하고 계획하세요.",
     buttonText: "여행 계획 세우기",
+    category: "plan",
   },
   {
     id: 2,
@@ -26,6 +27,7 @@ export const infoList: Info[] = [
       "<br>나만의 특별한 여행 경험을 기록하고 공유해보세요." +
       "<br>함께 만들어가는 더 나은 여행을 경험하세요.",
     buttonText: "커뮤니티 가기",
+    category: "trips",
   },
   {
     id: 3,
@@ -37,6 +39,7 @@ export const infoList: Info[] = [
       "<br>대중교통 경로와 소요시간을 쉽게 파악하세요." +
       "<br>여행에 필요한 모든 정보를 한 곳에서 확인하세요.",
     buttonText: "도구 살펴보기",
+    category: "plan",
   },
   {
     id: 4,
@@ -48,5 +51,6 @@ export const infoList: Info[] = [
       "<br>현지인이 추천하는 진짜 맛집 정보를 확인하세요." +
       "<br>새로운 여행의 즐거움을 발견하실 수 있습니다.",
     buttonText: "여행지 둘러보기",
+    category: "plan",
   },
 ];
