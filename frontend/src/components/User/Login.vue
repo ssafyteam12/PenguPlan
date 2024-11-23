@@ -31,6 +31,7 @@ const handleLogin = async () => {
 
 const handleRegister = async () => {
   await register(toPlainObject(registerForm));
+  router.push("/");
 };
 </script>
 

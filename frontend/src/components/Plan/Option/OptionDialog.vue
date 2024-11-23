@@ -1,6 +1,6 @@
 <!-- Modal.vue -->
 <script setup>
-import { onMounted, defineProps, ref } from "vue";
+import { onMounted, defineProps, ref, watch } from "vue";
 import {
   Dialog,
   DialogContent,
@@ -37,12 +37,27 @@ const nearAttraction = ref([]);
 const isOpen = ref(true);
 const isLoading = ref(true);
 
-onMounted(async () => {
+const fetchAttractionData = async () => {
+  isLoading.value = true;
   attraction.value = await getAttractionDetail(props.attractionNo);
   const near = await getAttractionNear(props.attractionNo);
   nearAttraction.value = near.nearbyAttractions;
   isLoading.value = false;
-});
+};
+
+onMounted(fetchAttractionData);
+
+const handleAttractionClick = async (selectedAttraction) => {
+  isLoading.value = true;
+
+  // 선택된 관광지 정보 불러오기
+  attraction.value = await getAttractionDetail(selectedAttraction.no);
+  const near = await getAttractionNear(selectedAttraction.no);
+  nearAttraction.value = near.nearbyAttractions;
+
+  isLoading.value = false;
+};
+
 
 const addReview = async () => {
   const send = {
@@ -127,15 +142,13 @@ const addReview = async () => {
                     :key="nAttraction.no"
                     class="md:basis-1/2 lg:basis-1/3"
                   >
-                    <OptionDialogNear :attraction="nAttraction" />
+                  <OptionDialogNear
+                      :attraction="nAttraction"
+                      @click="handleAttractionClick(nAttraction)"
+                      />
                   </CarouselItem>
+                  
                 </CarouselContent>
-                <CarouselPrevious
-                  class="absolute -left-12 top-1/2 -translate-y-1/2"
-                />
-                <CarouselNext
-                  class="absolute -right-12 top-1/2 -translate-y-1/2"
-                />
               </Carousel>
             </div>
           </div>
@@ -152,5 +165,6 @@ const addReview = async () => {
         </Button>
       </DialogFooter>
     </DialogContent>
+    
   </Dialog>
 </template>

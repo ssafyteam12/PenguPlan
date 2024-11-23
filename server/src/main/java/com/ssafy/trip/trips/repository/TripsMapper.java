@@ -26,4 +26,5 @@ public interface TripsMapper {
     void togglePublic(int tripId);
 
     void updateCopied(int tripId);
+
 }

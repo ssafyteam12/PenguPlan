@@ -47,12 +47,17 @@
     </select>
 
     <select id="getAllTrips" parameterType="int" resultMap="TripResultMap">
-        SELECT t.trip_id, t.user_id, t.content, t.sido_code, t.start_date, t.end_date, t.copied_count,
+        SELECT c.trip_id, c.user_id, c.content, c.sido_code, c.start_date, c.end_date, c.copied_count,
                a.attraction_no, b.title, b.first_image1, b.addr1, b.latitude, b.longitude, a.day, a.sequence
+        FROM (SELECT t.trip_id, t.user_id, t.content, t.sido_code, t.start_date, t.end_date, t.copied_count
         FROM trips t
-                 LEFT JOIN trip_attractions a ON t.trip_id = a.trip_id
+        LIMIT #{offset}, #{size}) c
+                 LEFT JOIN trip_attractions a ON c.trip_id = a.trip_id
                  LEFT JOIN attractions b ON a.attraction_no = b.no
-        LIMIT #{offset}, #{size}
+    </select>
+
+    <select id="getAttractionCount" parameterType="int" resultMap="TripResultMap">
+
     </select>
 
     <update id="updateTrip">
