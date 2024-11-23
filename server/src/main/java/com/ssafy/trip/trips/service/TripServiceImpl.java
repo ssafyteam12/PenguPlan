@@ -80,9 +80,8 @@ public class TripServiceImpl implements TripsService {
     @Override
     public Boolean togglePublic(int tripId) {
         tripsMapper.togglePublic(tripId);
-        return true;
+        return tripsMapper.getPublic(tripId);
     }
-
 
     private Long getCurrentUserId() {
 

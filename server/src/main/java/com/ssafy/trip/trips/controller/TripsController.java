@@ -1,9 +1,6 @@
 package com.ssafy.trip.trips.controller;
 
-import com.ssafy.trip.trips.dto.AllTripsResponse;
-import com.ssafy.trip.trips.dto.CopyTripResponse;
-import com.ssafy.trip.trips.dto.TripsDto;
-import com.ssafy.trip.trips.dto.TripsRequest;
+import com.ssafy.trip.trips.dto.*;
 import com.ssafy.trip.trips.service.TripsService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -73,8 +70,9 @@ public class TripsController {
     public ResponseEntity<?> updateVisibility(
             @PathVariable int tripId
     ) {
-        tripsService.togglePublic(tripId);
-        return ResponseEntity.ok("success");
+        Boolean isPublic = tripsService.togglePublic(tripId);
+        VisibilityResponse visibilityResponse = new VisibilityResponse(isPublic);
+        return ResponseEntity.ok(visibilityResponse);
     }
 
     private Long getCurrentUserId() {
