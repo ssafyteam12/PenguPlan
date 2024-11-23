@@ -71,6 +71,7 @@ const isGugunDisabled = computed(() => {
 // 시도 변경 시 시군구 초기화
 const handleSidoChange = (value: string) => {
   selectedSido.value = value;
+  console.log(value);
   selectedSigungu.value = "all";
 };
 </script>
@@ -109,36 +110,36 @@ const handleSidoChange = (value: string) => {
 
       <!-- 시군구 선택 -->
       <div class="grow-[2]">
-  <FormField v-slot="{ componentField }" name="gugun">
-    <FormItem>
-      <Select 
-        v-model="selectedSigungu" 
-        v-bind="componentField"
-        :disabled="isGugunDisabled"
-      >
-        <FormControl>
-          <SelectTrigger>
-            <SelectValue :placeholder="isGugunDisabled ? '시/도를 먼저 선택하세요' : '시/군/구 선택'" />
-          </SelectTrigger>
-        </FormControl>
-        <SelectContent>
-          <SelectGroup>
-            <SelectLabel>시/군/구</SelectLabel>
-            <SelectItem value="all">전체</SelectItem>
-            <SelectItem
-              :value="String(sigungu.id)"
-              v-for="sigungu in filteredSigungu"
-              :key="sigungu.id"
+        <FormField v-slot="{ componentField }" name="gugun">
+          <FormItem>
+            <Select 
+              v-model="selectedSigungu" 
+              v-bind="componentField"
+              :disabled="isGugunDisabled"
             >
-              {{ sigungu.name }}
-            </SelectItem>
-          </SelectGroup>
-        </SelectContent>
-      </Select>
-      <FormMessage />
-    </FormItem>
-  </FormField>
-</div>
+              <FormControl>
+                <SelectTrigger>
+                  <SelectValue :placeholder="isGugunDisabled ? '시/도를 먼저 선택하세요' : '시/군/구 선택'" />
+                </SelectTrigger>
+              </FormControl>
+              <SelectContent>
+                <SelectGroup v-if="!isGugunDisabled">
+                  <SelectLabel>시/군/구</SelectLabel>
+                  <SelectItem value="all">전체</SelectItem>
+                  <SelectItem
+                    :value="String(sigungu.id)"
+                    v-for="sigungu in filteredSigungu"
+                    :key="sigungu.id"
+                  >
+                    {{ sigungu.name }}
+                  </SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+            <FormMessage />
+          </FormItem>
+        </FormField>
+      </div>  
 
       <!-- 카테고리 선택 -->
       <div class="grow-[2]">
