@@ -7,11 +7,15 @@ import { RangeCalendar } from "@/components/ui/range-calendar";
 import type { DateRange } from "radix-vue";
 import { getLocalTimeZone, today } from "@internationalized/date";
 import { planStore } from "@/store/store";
+import { dayStore } from "@/store/store";
+import { DateTime } from "luxon";
 
 const emit = defineEmits(["submitForm"]);
 
 const pStore = planStore();
-
+const dStore = dayStore();
+import { storeToRefs } from "pinia";
+const { totalDay } = storeToRefs(dStore);
 const currentStep = ref(0);
 const selectedCity = ref(1);
 const selectedCategory = ref(1);
@@ -22,6 +26,26 @@ const selectedDate = ref({
   start,
   end,
 }) as Ref<DateRange>;
+
+const getDateDifference = () => {
+  if (!selectedDate.value.start || !selectedDate.value.end) {
+    return 0;
+  }
+
+  const start = DateTime.local(
+    selectedDate.value.start.year,
+    selectedDate.value.start.month,
+    selectedDate.value.start.day
+  );
+
+  const end = DateTime.local(
+    selectedDate.value.end.year,
+    selectedDate.value.end.month,
+    selectedDate.value.end.day
+  );
+
+  return end.diff(start, "days").days;
+};
 
 const formatDate = (date) => {
   if (!date) return "";
@@ -54,6 +78,7 @@ const onSubmit = () => {
     formatDate(selectedDate.value.start),
     formatDate(selectedDate.value.end)
   );
+  dStore.setTotalDay(getDateDifference());
   emit("submitForm");
 };
 </script>

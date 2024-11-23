@@ -32,7 +32,7 @@ const deletePlan = async (tripId) => {
 
 <template>
   <div
-    class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow"
+    class="relative bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow"
   >
     <div class="flex">
       <div class="w-48 h-48">
@@ -58,10 +58,10 @@ const deletePlan = async (tripId) => {
               <span>{{ trip.attractions[0]?.addr1 || "주소 정보 없음" }}</span>
             </div>
           </div>
-          <div class="flex space-x-2">
+          <div class="absolute bottom-4 right-4 flex space-x-2">
             <Button
               @click="router.push(`/myplan/${trip.tripId}`)"
-              variant="default"
+              variant="link"
             >
               상세 보기
             </Button>
