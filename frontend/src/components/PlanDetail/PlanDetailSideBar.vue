@@ -10,6 +10,7 @@ const router = useRouter();
 const route = useRoute();
 const plans = ref<Attraction>([]);
 const data = ref<Attraction[]>([]);
+const name = ref("");
 
 const addAttraction = (day: string, attraction: Attraction) => {
   if (!plans.value[day]) {
@@ -26,6 +27,7 @@ onMounted(async () => {
   const id = route.params.tripId;
   const tmp = await getUserTripById(id);
   data.value = tmp.attractions;
+  name.value = tmp.content;
 
   const filtered = data.value.filter((item: { day: any }) => {
     const day = item.day;
@@ -36,13 +38,17 @@ onMounted(async () => {
 
 <template>
   <div class="h-full overflow-y-auto p-4 bg-gray-50 relative">
-    <Button
-      variant="outline"
-      @click="router.push(`/editplan/${route.params.tripId}`)"
-      >수정하기</Button
-    >
+    <div class="flex justify-center gap-5 text-2xl font-bold mt-5">
+      {{ name }}
+      <Button
+        variant="outline"
+        @click="router.push(`/editplan/${route.params.tripId}`)"
+        >수정하기</Button
+      >
+    </div>
+
     <div v-for="(attractions, day) in plans" :key="day" class="mb-6">
-      <h2 class="text-lg font-bold mb-3">{{ day }} 일차</h2>
+      <h2 v-if="day != 0" class="text-lg font-bold mb-3">{{ day }} 일차</h2>
 
       <div class="relative">
         <div

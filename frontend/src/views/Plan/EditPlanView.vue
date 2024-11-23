@@ -9,13 +9,14 @@ import { getUserTripById } from "@/api/Plan/plan";
 
 const route = useRoute();
 const pStore = planStore();
-const { plans } = storeToRefs(pStore);
 const planList = ref([]);
 
 // 값 세팅해서 이동
 onMounted(async () => {
   pStore.initiate();
   planList.value = await getUserTripById(route.params.tripId);
+
+  pStore.setTitleContent(planList.value.content);
 
   const simplifiedArray = planList.value.attractions.map((attraction) => ({
     no: attraction.no,

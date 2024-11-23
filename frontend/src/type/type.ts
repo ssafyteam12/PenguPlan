@@ -15,12 +15,14 @@ export interface Info {
 export interface Category {
   id: number;
   name: string;
+  img: string;
 }
 
 // 여행지 시/도
 export interface Sido {
   id: number;
   name: string;
+  img: string;
 }
 
 // 여행지 시/군/구
