@@ -75,11 +75,17 @@
         WHERE trip_id = #{tripId}
     </update>
 
+    <select id="getPublic" parameterType="int">
+        SELECT is_public
+        from trips
+        where trip_id = #{tripId}
+    </select>
+
     <update id="togglePublic" parameterType="int">
         UPDATE trips
         SET is_public = CASE
-                            WHEN is_public = true THEN false
-                            ELSE true
+                            WHEN is_public = 0 THEN 1
+                            ELSE 0
             END
         WHERE trip_id = #{tripId}
     </update>
