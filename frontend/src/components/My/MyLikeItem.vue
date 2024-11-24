@@ -2,7 +2,7 @@
 import { defineProps, ref, watch } from "vue";
 import { getMyLike } from "@/api/User/My";
 import { getAttractionDetail } from "@/api/Attraction/Attraction";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import NoImage from "@/assets/image/no-image.png";
 import OptionDialog from "../Plan/Option/OptionDialog.vue";
 

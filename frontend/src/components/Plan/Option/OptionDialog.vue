@@ -64,23 +64,38 @@ const handleAttractionClick = async (selectedAttraction) => {
 
 <template>
   <Dialog open>
-    <DialogTitle></DialogTitle>
-    <DialogContent v-if="isLoading" class="max-w-4xl">
-      <div class="space-y-4">
-        <Skeleton class="h-8 w-3/4" />
-        <Skeleton class="h-[300px] w-full" />
-        <Skeleton class="h-4 w-full" />
-        <Skeleton class="h-4 w-2/3" />
-      </div>
-    </DialogContent>
+    <DialogTitle class="sr-only"> </DialogTitle>
+
+    <div v-if="isLoading">
+      <DialogTitle v-if="isLoading" class="sr-only"> </DialogTitle>
+      <DialogContent v-if="isLoading" class="max-w-4xl">
+        <DialogDescription>
+          선택된 관광지의 상세 정보 및 관련 리뷰를 확인할 수 있습니다.
+        </DialogDescription>
+        <div class="space-y-4">
+          <Skeleton class="h-8 w-3/4" />
+          <Skeleton class="h-[300px] w-full" />
+          <Skeleton class="h-4 w-full" />
+          <Skeleton class="h-4 w-2/3" />
+        </div>
+      </DialogContent>
+    </div>
 
     <DialogContent
       v-if="!isLoading"
       class="max-w-5xl max-h-[90vh] overflow-auto font-main"
     >
+      <DialogDescription> </DialogDescription>
       <DialogHeader>
-        <DialogTitle class="text-3xl font-bold text-gray-800 mb-6">
-          {{ attraction.attraction.title }}
+        <DialogTitle
+          class="text-3xl font-bold text-gray-800 mb-6 flex justify-between"
+        >
+          <div>
+            {{ attraction.attraction.title }}
+          </div>
+          <div>
+            <Button variant="outline" @click="$emit('close')"> X </Button>
+          </div>
         </DialogTitle>
 
         <DialogDescription class="space-y-8">

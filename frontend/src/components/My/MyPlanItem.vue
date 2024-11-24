@@ -15,6 +15,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { deleteUserTripById } from "@/api/Plan/Plan";
 
 const router = useRouter();
 const props = defineProps({
