@@ -1,6 +1,6 @@
 import axios from "axios";
 import apiClient from "../ApiClient";
-import { Attraction } from "@/type/type";
+import { Attraction, AttractionReview } from "@/type/type";
 
 // 완료
 export const getAttractionBySidoGugun = async (
@@ -16,9 +16,6 @@ export const getAttractionBySidoGugun = async (
         params: { sido, gugun, content, keyword },
       }
     );
-
-    // console.log("response data = ", response.data);
-
     return response.data;
   } catch (error) {
     console.error(error);
@@ -64,17 +61,13 @@ export const postAttractionLike = async (attractionNo: number) => {
   }
 };
 
-export const postAttractionReview = async (
-  info: object,
-  attractionNo: number
-) => {
-  console.log("info = ", info);
+export const postAttractionReview = async (info: AttractionReview) => {
   try {
     const response = await apiClient.post(
-      `/api/v1/attractions/${attractionNo}/ratings`,
+      `/api/v1/attractions/${info.attractionNo}/comments`,
       info
     );
-    console.log(response);
+    return response.data;
   } catch (error) {
     console.error(error);
   }
@@ -85,7 +78,6 @@ export const getAttractionNear = async (attractionNo: number) => {
     const response = await apiClient.get(
       `/api/v1/attractions/${attractionNo}/nearby`
     );
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error(error);

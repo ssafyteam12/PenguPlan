@@ -17,7 +17,7 @@ defineEmits(["next"]);
     <h2 class="text-2xl font-semibold text-gray-800 mb-6">
       어디로 떠나시나요?
     </h2>
-    <div class="grid grid-cols-5 gap-2 mb-5">
+    <div class="grid grid-cols-5 gap-5 mb-5">
       <button
         v-for="city in sidoList"
         :key="city.id"
@@ -30,7 +30,7 @@ defineEmits(["next"]);
       >
         <div class="flex flex-col items-center gap-1">
           <div
-            class="bg-base-color w-16 h-16 p-2 flex items-center justify-center rounded-full overflow-hidden"
+            class="bg-base-color w-16 h-16 p-3 flex items-center justify-center rounded-full overflow-hidden"
           >
             <img :src="city.img" class="max-w-full max-h-full object-contain" />
           </div>

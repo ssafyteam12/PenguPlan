@@ -34,19 +34,9 @@ onMounted(async () => {
 <template>
   <div class="min-h-screen bg-white">
     <div class="h-screen-minus-50 relative">
-      <TransitionRoot
-        appear
-        enter="transition-all duration-300"
-        enter-from="opacity-0 translate-y-4"
-        enter-to="opacity-100 translate-y-0"
-        leave="transition-all duration-300"
-        leave-from="opacity-100 translate-y-0"
-        leave-to="opacity-0 translate-y-4"
-      >
-        <div class="w-full h-full flex">
-          <PlanMain :isEdit="true" />
-        </div>
-      </TransitionRoot>
+      <div class="w-full h-full flex">
+        <PlanMain :isEdit="true" />
+      </div>
     </div>
   </div>
 </template>

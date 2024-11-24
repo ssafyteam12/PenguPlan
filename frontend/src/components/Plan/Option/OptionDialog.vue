@@ -27,6 +27,7 @@ import {
 } from "@/api/Attraction/Attraction";
 import NoImage from "@/assets/image/no-image.png";
 import OptionDialogNear from "./OptionDialogNear.vue";
+import OptionDialogReview from "./OptionDialogReview.vue";
 
 const props = defineProps({
   attractionNo: Number,
@@ -59,38 +60,42 @@ const handleAttractionClick = async (selectedAttraction) => {
 
   isLoading.value = false;
 };
-
-const addReview = async () => {
-  const send = {
-    attractionNo: props.attractionNo,
-    userId: "10",
-    rating: 5,
-    content:
-      "정말 좋은 관광지였습니다. 특히 경치가 훌륭했고 시설도 잘 되어있었습니다.",
-  };
-  await postAttractionReview(send, props.attractionNo);
-};
 </script>
 
 <template>
   <Dialog open>
-    <DialogTitle></DialogTitle>
-    <DialogContent v-if="isLoading" class="max-w-4xl">
-      <div class="space-y-4">
-        <Skeleton class="h-8 w-3/4" />
-        <Skeleton class="h-[300px] w-full" />
-        <Skeleton class="h-4 w-full" />
-        <Skeleton class="h-4 w-2/3" />
-      </div>
-    </DialogContent>
+    <DialogTitle class="sr-only"> </DialogTitle>
+
+    <div v-if="isLoading">
+      <DialogTitle v-if="isLoading" class="sr-only"> </DialogTitle>
+      <DialogContent v-if="isLoading" class="max-w-4xl">
+        <DialogDescription>
+          선택된 관광지의 상세 정보 및 관련 리뷰를 확인할 수 있습니다.
+        </DialogDescription>
+        <div class="space-y-4">
+          <Skeleton class="h-8 w-3/4" />
+          <Skeleton class="h-[300px] w-full" />
+          <Skeleton class="h-4 w-full" />
+          <Skeleton class="h-4 w-2/3" />
+        </div>
+      </DialogContent>
+    </div>
 
     <DialogContent
       v-if="!isLoading"
-      class="max-w-5xl max-h-[90vh] overflow-auto"
+      class="max-w-5xl max-h-[90vh] overflow-auto font-main"
     >
+      <DialogDescription> </DialogDescription>
       <DialogHeader>
-        <DialogTitle class="text-3xl font-bold text-gray-800 mb-6">
-          {{ attraction.attraction.title }}
+        <DialogTitle
+          class="text-3xl font-bold text-gray-800 mb-6 flex justify-between"
+        >
+          <div>
+            {{ attraction.attraction.title }}
+          </div>
+          <div>
+            <Button variant="outline" @click="$emit('close')"> X </Button>
+          </div>
         </DialogTitle>
 
         <DialogDescription class="space-y-8">
@@ -130,10 +135,20 @@ const addReview = async () => {
             </div>
           </div>
 
+          <div class="mt-12 bg-gray-50 p-8 rounded-xl">
+            <h2 class="text-2xl font-semibold text-center mb-8 text-gray-800">
+              사용자들의 리뷰를 확인해 보세요.
+            </h2>
+            <OptionDialogReview
+              :attractionNo="attraction.attraction.no"
+              :review="attraction.reviews"
+            />
+          </div>
+
           <!-- Nearby Attractions Section -->
           <div class="mt-12 bg-gray-50 p-8 rounded-xl">
             <h2 class="text-2xl font-semibold text-center mb-8 text-gray-800">
-              근처의 추천 관광지
+              근처 이런 곳은 어떠신가요?
             </h2>
             <div class="relative">
               <Carousel class="max-w-4xl mx-auto">

@@ -149,7 +149,7 @@ onMounted(() => {
       <div class="mt-4 animate-bounce">
         <Button
           @click="scrollToContent"
-          class="px-8 py-4 text-lg bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg transform transition-all duration-300 hover:scale-105"
+          class="px-8 py-4 text-lg bg-main-color hover:bg-blue-400 text-white rounded-full shadow-lg transform transition-all duration-300 hover:scale-105"
         >
           여행 시작하기
           <span class="ml-2">↓</span>
