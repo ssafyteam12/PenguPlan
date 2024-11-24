@@ -95,3 +95,10 @@ export interface User {
   userId: number;
   email: string;
 }
+
+export interface AttractionReview {
+  attractionNo: number;
+  userName: string;
+  rating: number;
+  content: string;
+}
