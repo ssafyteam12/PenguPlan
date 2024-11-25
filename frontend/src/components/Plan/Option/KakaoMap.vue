@@ -47,9 +47,7 @@ const topAttractions = computed(() => {
   return [...attractionList.value]
     .sort((a, b) => (b.avgLank || 0) - (a.avgLank || 0))
     .slice(0, getVisibleInfoWindowCount.value);
-}); 
-
-
+});
 
 // 마커를 보여줄 최대 줌 레벨 (이 레벨보다 크면 마커가 안 보임)
 const MAX_MARKER_ZOOM_LEVEL = 8;
@@ -68,8 +66,6 @@ watchEffect(() => {
   selectedAttractionList.value = [
     ...pStore.getAttraction(selectedDay.value.toString()),
   ];
-
-  
 
   markerList.value = selectedAttractionList.value.map(
     (attraction: any, index: number) => ({
@@ -149,55 +145,62 @@ const onLoadKakaoMap = (mapRef: kakao.maps.Map) => {
     :lat="lat"
     :lng="lng"
   >
-  <template v-if="showMarkers">
-    <div v-for="attr in attractionList" :key="attr.no">
-      <!-- 마커 -->
-      <KakaoMapMarker 
-        :lat="attr.latitude" 
-        :lng="attr.longitude"
-        :clickable="true"
-        @onLoadKakaoMapMarker="(marker) => handleMarkerLoad(marker, attr.no)"
-        @onClickKakaoMapMarker="() => handleMarkerClick(attr.latitude, attr.longitude)"
-        @mouseOverKakaoMapMarker="() => handleMouseOver(attr.no)"
-        @mouseOutKakaoMapMarker="handleMouseOut"
+    <template v-if="showMarkers">
+      <div v-for="attr in attractionList" :key="attr.no">
+        <!-- 마커 -->
+        <KakaoMapMarker
+          :lat="attr.latitude"
+          :lng="attr.longitude"
+          :clickable="true"
+          @onLoadKakaoMapMarker="(marker) => handleMarkerLoad(marker, attr.no)"
+          @onClickKakaoMapMarker="
+            () => handleMarkerClick(attr.latitude, attr.longitude)
+          "
+          @mouseOverKakaoMapMarker="() => handleMouseOver(attr.no)"
+          @mouseOutKakaoMapMarker="handleMouseOut"
+        />
+
+        <!-- 상위 N개 관광지에 대한 인포윈도우 -->
+        <KakaoMapInfoWindow
+          v-if="topAttractions.find((a) => a.no === attr.no)"
+          :marker="markerRefs.get(attr.no)"
+          :lat="attr.latitude"
+          :lng="attr.longitude"
+          :visible="true"
+        >
+          <div class="px-2 py-1 bg-white rounded shadow">
+            <p class="font-semibold text-sm">{{ attr.title }}</p>
+            <p class="text-xs text-gray-600">
+              평점: {{ attr.avgLank || "없음" }}
+            </p>
+          </div>
+        </KakaoMapInfoWindow>
+
+        <!-- 마우스 오버 시 표시되는 인포윈도우 -->
+        <KakaoMapInfoWindow
+          v-if="
+            hoveredMarker === attr.no &&
+            !topAttractions.find((a) => a.no === attr.no)
+          "
+          :marker="markerRefs.get(attr.no)"
+          :lat="attr.latitude"
+          :lng="attr.longitude"
+          :visible="true"
+        >
+          <div class="px-2 py-1 bg-white rounded shadow">
+            <p class="text-sm">{{ attr.title }}</p>
+          </div>
+        </KakaoMapInfoWindow>
+      </div>
+
+      <KakaoMapMarkerPolyline
+        v-if="markerList"
+        :markerList="markerList"
+        :showMarkerOrder="false"
+        strokeColor="#C74C5E"
+        :strokeOpacity="1"
+        strokeStyle="shortdot"
       />
-      
-      <!-- 상위 N개 관광지에 대한 인포윈도우 -->
-      <KakaoMapInfoWindow
-        v-if="topAttractions.find(a => a.no === attr.no)"
-        :marker="markerRefs.get(attr.no)"
-        :lat="attr.latitude"
-        :lng="attr.longitude"
-        :visible="true"
-      >
-        <div class="px-2 py-1 bg-white rounded shadow">
-          <p class="font-semibold text-sm">{{ attr.title }}</p>
-          <p class="text-xs text-gray-600">평점: {{ attr.avgLank || '없음' }}</p>
-        </div>
-      </KakaoMapInfoWindow>
-
-      <!-- 마우스 오버 시 표시되는 인포윈도우 -->
-      <KakaoMapInfoWindow
-        v-if="hoveredMarker === attr.no && !topAttractions.find(a => a.no === attr.no)"
-        :marker="markerRefs.get(attr.no)"
-        :lat="attr.latitude"
-        :lng="attr.longitude"
-        :visible="true"
-      >
-        <div class="px-2 py-1 bg-white rounded shadow">
-          <p class="text-sm">{{ attr.title }}</p>
-        </div>
-      </KakaoMapInfoWindow>
-    </div>
-
-    <KakaoMapMarkerPolyline
-      v-if="!markerList"
-      :markerList="markerList"
-      :showMarkerOrder="false"
-      strokeColor="#C74C5E"
-      :strokeOpacity="1"
-      strokeStyle="shortdot"
-    />
     </template>
   </KakaoMap>
 </template>

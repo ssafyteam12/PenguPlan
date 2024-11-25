@@ -78,7 +78,7 @@ const onSubmit = () => {
     formatDate(selectedDate.value.start),
     formatDate(selectedDate.value.end)
   );
-  dStore.setTotalDay(getDateDifference());
+  dStore.setTotalDay(getDateDifference() + 1);
   emit("submitForm");
 };
 </script>
