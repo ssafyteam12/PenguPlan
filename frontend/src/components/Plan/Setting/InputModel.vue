@@ -23,7 +23,7 @@ const submitForm = () => {
   <Dialog>
     <DialogTrigger asChild>
       <Button
-        class="flex items-center gap-2 px-6 py-3 bg-white border-2 border-blue-600 text-blue-600 hover:bg-blue-50 transition-colors rounded-full font-medium text-lg shadow-sm hover:shadow-md"
+        class="flex items-center gap-2 px-6 py-3 bg-white border-2 border-main-color text-main-color hover:bg-blue-50 transition-colors rounded-full font-medium text-lg shadow-sm hover:shadow-md"
       >
         <PlusCircle class="w-5 h-5" />
         새로운 여행 만들기
@@ -37,7 +37,7 @@ const submitForm = () => {
         <DialogTitle class="text-2xl font-bold text-gray-800 text-center pb-2">
           여행 설정하기
         </DialogTitle>
-        <div class="w-16 h-1 bg-blue-600 mx-auto mb-0 rounded-full"></div>
+        <div class="w-16 h-1 bg-main-color mx-auto mb-0 rounded-full"></div>
       </DialogHeader>
 
       <div class="w-full bg-gray-50 rounded-xl">

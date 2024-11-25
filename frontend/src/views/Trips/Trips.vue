@@ -87,7 +87,7 @@
             </button>
             <button
               @click="handleCopyTrip(trip.tripId)"
-              class="flex-1 px-4 py-2.5 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-200 text-sm font-medium"
+              class="flex-1 px-4 py-2.5 bg-main-color text-white rounded-lg hover:bg-hover-color transition-colors duration-200 text-sm font-medium"
             >
               일정 복사
             </button>
@@ -104,7 +104,7 @@
         :class="[
           'px-4 py-2 rounded-lg font-medium transition-all duration-200 hover:-translate-y-0.5',
           page === pageNum
-            ? 'bg-blue-500 text-white shadow-md'
+            ? 'bg-main-color text-white shadow-md'
             : 'bg-white hover:bg-gray-50',
         ]"
       >
@@ -134,7 +134,7 @@
           <div class="flex gap-3 items-center">
             <button
               @click="handleCopyTrip(selectedTrip.tripId)"
-              class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-200 text-sm font-medium"
+              class="px-4 py-2 bg-main-color text-white rounded-lg hover:bg-blue-600 transition-colors duration-200 text-sm font-medium"
             >
               일정 복사하기
             </button>

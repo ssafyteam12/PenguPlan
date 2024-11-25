@@ -23,10 +23,11 @@ module.exports = {
     },
     extend: {
       colors: {
-        "base-color": "#d8f3ff",
-        "main-color": "#00b5ff",
+        "base-color": "#e0f1ff",
+        "main-color": "#4284d4",
         "dark-color": "#5e7998",
         "point-color": "#454a44",
+        "hover-color": "#004991",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

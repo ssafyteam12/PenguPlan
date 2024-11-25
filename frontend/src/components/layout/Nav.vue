@@ -49,10 +49,6 @@ const handleLogout = () => {
       <router-link to="/plan">
         <Button variant="link" class="text-base"> 여행하기 </Button>
       </router-link>
-      <div class="text-dark-color text-lg">|</div>
-      <router-link to="/">
-        <Button variant="link" class="text-base"> 공지사항 </Button>
-      </router-link>
     </nav>
     <nav class="flex items-center md:justify-end md:grow">
       <router-link to="/login" v-if="!isLoggedIn">

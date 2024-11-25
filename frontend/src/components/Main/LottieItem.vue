@@ -53,7 +53,7 @@ defineEmits(["click"]);
 
         <Button
           @click="$emit('click', data.category)"
-          class="mt-6 bg-gradient-to-r bg-dark-color text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5"
+          class="mt-6 bg-main-color hover:bg-hover-color text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5"
           v-html="props.data.buttonText"
         ></Button>
       </div>

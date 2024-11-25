@@ -95,6 +95,7 @@ const handleSwitch = async (tripId) => {
                 <Switch
                   :checked="isPublic"
                   @update:checked="handleSwitch(trip.tripId)"
+                  class="data-[state=checked]:bg-point-color data-[state=unchecked]:bg-gray-300"
                 />
               </TooltipTrigger>
               <TooltipContent>

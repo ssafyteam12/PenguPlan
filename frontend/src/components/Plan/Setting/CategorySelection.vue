@@ -45,7 +45,7 @@ const selectCategory = (id) => {
     </div>
     <Button
       @click="$emit('next', selectedCategory)"
-      class="mx-6 mb-6 w-[calc(100%-48px)] py-3 rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 text-white text-sm font-semibold hover:opacity-90 transition-opacity duration-300"
+      class="mx-6 mb-6 w-[calc(100%-48px)] py-3 rounded-lg bg-main-color hover:bg-hover-color text-white text-sm font-semibold hover:opacity-90 transition-opacity duration-300"
     >
       다음
     </Button>

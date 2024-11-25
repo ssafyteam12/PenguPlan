@@ -45,7 +45,7 @@ const toggleCompletedSetting = () => {
                 이미 계획된 여행이 있으신가요?
                 <a
                   @click="router.push('/mypage')"
-                  class="text-blue-600 hover:underline"
+                  class="text-blue-600 hover:underline cursor-pointer"
                   >내 여행 보기</a
                 >
               </p>

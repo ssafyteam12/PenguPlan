@@ -7,7 +7,6 @@ defineProps({
   attraction: Object,
 });
 const emit = defineEmits(["click"]);
-
 </script>
 
 <template>
@@ -30,7 +29,7 @@ const emit = defineEmits(["click"]);
           class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full"
         >
           <div class="flex items-center gap-1.5">
-            <Navigation class="h-4 w-4 text-blue-600" />
+            <Navigation class="h-4 w-4 text-main-color" />
             <span class="text-sm font-medium text-gray-700">5km</span>
           </div>
         </div>
@@ -38,15 +37,15 @@ const emit = defineEmits(["click"]);
 
       <div class="p-5">
         <h3
-          class="text-lg font-semibold text-gray-800 line-clamp-1 mb-3 group-hover:text-blue-600 transition-colors"
+          class="text-lg font-semibold text-gray-800 line-clamp-1 mb-3 group-hover:text-main-color transition-colors"
         >
           {{ attraction?.title }}
         </h3>
 
         <!-- Action Button -->
-        <div class="flex items-center justify-between mt-4" >
+        <div class="flex items-center justify-between mt-4">
           <button
-            class="flex items-center gap-2 text-sm text-blue-600 font-medium group-hover:gap-3 transition-all"
+            class="flex items-center gap-2 text-sm text-main-color font-medium group-hover:gap-3 transition-all"
           >
             자세히 보기
             <ArrowRight class="h-4 w-4" />
@@ -65,4 +64,3 @@ const emit = defineEmits(["click"]);
   overflow: hidden;
 }
 </style>
-

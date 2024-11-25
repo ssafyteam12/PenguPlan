@@ -158,7 +158,7 @@ const handleEdit = async () => {
         <Button
           @click="handleSubmit"
           :disabled="!tripTitle"
-          class="w-full py-3 bg-dark-color hover:bg-dark-color/90 text-white font-medium rounded-lg transition-colors duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          class="w-full py-3 bg-main-color hover:bg-hover-color text-white font-medium rounded-lg transition-colors duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           일정 저장하기
         </Button>
@@ -168,7 +168,7 @@ const handleEdit = async () => {
         <Button
           @click="handleEdit"
           :disabled="!tripTitle"
-          class="w-full py-3 bg-dark-color hover:bg-dark-color/90 text-white font-medium rounded-lg transition-colors duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          class="w-full py-3 bg-main-color hover:bg-hover-color text-white font-medium rounded-lg transition-colors duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           일정 수정하기
         </Button>
