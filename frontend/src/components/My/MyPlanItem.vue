@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps } from "vue";
+import { ref, defineProps, onMounted, watch } from "vue";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "vue-router";
 import NoImage from "@/assets/image/no-image.png";
@@ -32,6 +32,21 @@ const props = defineProps({
     required: true,
   },
 });
+
+// onMounted(() => {
+//   console.log(props.trip.isPublic);
+//   const isPublic = ref(props.trip.isPublic);
+
+//   console.log("isPublic = ", isPublic.value);
+// });
+
+// props가 변경되면 isPublic 업데이트
+watch(
+  () => props.trip.isPublic,
+  (newValue) => {
+    isPublic.value = newValue;
+  }
+);
 
 const isPublic = ref(props.trip.isPublic);
 
@@ -78,12 +93,13 @@ const handleSwitch = async (tripId) => {
             <Tooltip>
               <TooltipTrigger>
                 <Switch
-                  :checked="ispublic"
+                  :checked="isPublic"
                   @update:checked="handleSwitch(trip.tripId)"
                 />
               </TooltipTrigger>
               <TooltipContent>
-                <p>공개로 설정해보세요!</p>
+                <p v-if="!isPublic">공개로 설정해 보세요!</p>
+                <p v-else>비공개 모드로 숨겨보세요!</p>
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
