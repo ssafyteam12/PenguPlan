@@ -28,10 +28,6 @@ const handleLogin = async () => {
   try {
     const userData = await login(toPlainObject(loginForm));
 
-    toast("여행 일정 등록 성공!", {
-      description: "마이페이지에서 일정을 확인하세요",
-    });
-
     store.loginSetting(userData);
     router.push("/");
   } catch (error) {
