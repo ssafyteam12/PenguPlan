@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { register, login } from "@/api/User/user";
 import { toPlainObject } from "@/util/util";
 import { userStore } from "@/store/userStore";
+import { toast } from "vue-sonner";
 
 const router = useRouter();
 const store = userStore();
@@ -24,9 +25,14 @@ const registerForm = reactive({
 });
 
 const handleLogin = async () => {
-  const userData = await login(toPlainObject(loginForm));
-  store.loginSetting(userData);
-  router.push("/");
+  try {
+    const userData = await login(toPlainObject(loginForm));
+
+    store.loginSetting(userData);
+    router.push("/");
+  } catch (error) {
+    toast.error("아이디와 비밀번호를 확인해주세요.");
+  }
 };
 
 const handleRegister = async () => {

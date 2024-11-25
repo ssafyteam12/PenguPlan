@@ -23,6 +23,8 @@ const { plans, sidoCode, content, startDate, endDate, titleContent } =
 onMounted(() => {
   if (props.isEdit) {
     tripTitle.value = titleContent.value;
+  } else {
+    pStore.initiate();
   }
 });
 

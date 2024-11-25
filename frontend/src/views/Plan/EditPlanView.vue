@@ -18,14 +18,14 @@ onMounted(async () => {
 
   pStore.setTitleContent(planList.value.content);
 
-  const simplifiedArray = planList.value.attractions.map((attraction) => ({
-    no: attraction.no,
-    title: attraction.title,
-    day: attraction.day,
-    sequence: attraction.sequence,
-  }));
+  // const simplifiedArray = planList.value.attractions.map((attraction) => ({
+  //   no: attraction.no,
+  //   title: attraction.title,
+  //   day: attraction.day,
+  //   sequence: attraction.sequence,
+  // }));
 
-  simplifiedArray.forEach((item) => {
+  planList.value.attractions.forEach((item) => {
     pStore.addAttraction(item.day, item);
   });
 });
