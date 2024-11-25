@@ -52,7 +52,7 @@ export const getAttractionByPosition = async (
     maxLong,
     minLat,
     minLong,
-    sidoCode: sidoCode.value,
+    sido: sidoCode.value,
     content: content.value,
     keyword: keyword.value,
   };
