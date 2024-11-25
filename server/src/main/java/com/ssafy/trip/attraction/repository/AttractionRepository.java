@@ -17,6 +17,10 @@ public interface AttractionRepository extends JpaRepository<Attraction, Long> {
     @Query(value = "SELECT * FROM attractions a " +
             "WHERE a.latitude BETWEEN :minLatitude AND :maxLatitude " +
             "AND a.longitude BETWEEN :minLongitude AND :maxLongitude " +
+            "AND (:sido = -1 OR a.area_code = :sido) AND " +
+            "(:gugun = -1 OR a.si_gun_gu_code = :gugun) AND " +
+            "(:content = -1 OR a.content_type_id = :content) AND " +
+            "(:keyword IS NULL OR :keyword = '' OR a.title LIKE CONCAT('%', :keyword, '%')) " +
             "ORDER BY \n" +
             "  POWER((:maxLongitude + :minLongitude) / 2 - a.longitude, 2) + \n" +
             "  POWER((:maxLatitude + :minLatitude) / 2 - a.latitude, 2) " +
@@ -26,7 +30,11 @@ public interface AttractionRepository extends JpaRepository<Attraction, Long> {
             @Param("minLatitude") double minLatitude,
             @Param("maxLatitude") double maxLatitude,
             @Param("minLongitude") double minLongitude,
-            @Param("maxLongitude") double maxLongitude);
+            @Param("maxLongitude") double maxLongitude,
+            @Param("sido") int sido,
+            @Param("gugun") int gugun,
+            @Param("content") int content,
+            @Param("keyword") String keyword);
 
 
     @Query(value = "SELECT a.* " +

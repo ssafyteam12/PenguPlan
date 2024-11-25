@@ -1,9 +1,6 @@
 package com.ssafy.trip.attraction.controller;
 
-import com.ssafy.trip.attraction.dto.AttractionDTO;
-import com.ssafy.trip.attraction.dto.AttractionDetailDTO;
-import com.ssafy.trip.attraction.dto.NearbyAttractionsDTO;
-import com.ssafy.trip.attraction.dto.ResponseAttractionsDTO;
+import com.ssafy.trip.attraction.dto.*;
 import com.ssafy.trip.attraction.service.AttractionService;
 import com.ssafy.trip.attractionLikes.dto.LikeResponse;
 import com.ssafy.trip.review.dto.ReviewRequest;
@@ -26,11 +23,27 @@ public class AttractionController {
 
     @GetMapping
     public ResponseEntity<ResponseAttractionsDTO> getAttractionsByPosition(
-            @RequestParam("maxLat") double maxLat,
-            @RequestParam("maxLong") double maxLong,
-            @RequestParam("minLat") double minLat,
-            @RequestParam("minLong") double minLong) {
-        List<AttractionDTO> attractions = attractionService.getAttractionsByPosition(maxLat, maxLong, minLat, minLong).stream().toList();
+            @RequestParam(value = "sido", defaultValue = "-1") int sido,
+            @RequestParam(value = "gugun", defaultValue = "-1") int gugun,
+            @RequestParam(value = "content", defaultValue = "-1") int content,
+            @RequestParam(value = "keyword", required = false) String keyword,
+            @RequestParam(value="minLat", required = false) Double minLatitude,
+            @RequestParam(value="minLong", required = false) Double minLongitude,
+            @RequestParam(value="maxLat", required = false) Double maxLatitude,
+            @RequestParam(value="maxLong", required = false) Double maxLongitude
+
+    ) {
+        AttractionPositionRequest request = AttractionPositionRequest.builder()
+                .sido(sido)
+                .gugun(gugun)
+                .content(content)
+                .keyword(keyword)
+                .minLatitude(minLatitude)
+                .minLongitude(minLongitude)
+                .maxLatitude(maxLatitude)
+                .maxLongitude(maxLongitude)
+                .build();
+        List<AttractionDTO> attractions = attractionService.getAttractionsByPosition(request).stream().toList();
         log.info("" + attractions.size());
         ResponseAttractionsDTO responseAttractionsDTO = new ResponseAttractionsDTO(attractions);
         return ResponseEntity.ok(responseAttractionsDTO);

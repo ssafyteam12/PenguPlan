@@ -13,8 +13,7 @@ public interface AttractionService {
     /**
      * 위치 기반 관광지 검색
      */
-    List<AttractionDTO> getAttractionsByPosition(double maxLatitude, double maxLongitude, double minLatitude, double minLongitude);
-
+    List<AttractionDTO> getAttractionsByPosition(AttractionPositionRequest request);
     /**
      * 조건 기반 관광지 검색
      */

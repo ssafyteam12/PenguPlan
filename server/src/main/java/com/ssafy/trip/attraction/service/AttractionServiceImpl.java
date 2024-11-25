@@ -2,6 +2,7 @@ package com.ssafy.trip.attraction.service;
 
 import com.ssafy.trip.attraction.dto.AttractionDTO;
 import com.ssafy.trip.attraction.dto.AttractionDetailDTO;
+import com.ssafy.trip.attraction.dto.AttractionPositionRequest;
 import com.ssafy.trip.attraction.dto.NearbyAttractionsDTO;
 import com.ssafy.trip.attraction.entity.Attraction;
 import com.ssafy.trip.attraction.repository.AttractionRepository;
@@ -33,8 +34,8 @@ public class AttractionServiceImpl implements AttractionService {
     private final AttractionLikesRepository attractionLikesRepository;
     private final OpenAiChatModel openAiChatModel;
 
-    public List<AttractionDTO> getAttractionsByPosition(double maxLat, double maxLong, double minLat, double minLong) {
-        List<Attraction> attractions = attractionRepository.findAttractionsByPosition(minLat, maxLat, minLong, maxLong);
+    public List<AttractionDTO> getAttractionsByPosition(AttractionPositionRequest request) {
+        List<Attraction> attractions = attractionRepository.findAttractionsByPosition(request.getMinLatitude(), request.getMaxLatitude(), request.getMinLongitude(), request.getMaxLongitude(), request.getSido(), request.getGugun(), request.getContent(), request.getKeyword());
         Long userId = getCurrentUserId();
 
         return attractions.stream()
