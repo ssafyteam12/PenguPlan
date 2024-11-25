@@ -24,7 +24,7 @@ export const planStore = defineStore("plan", () => {
   const endDate = ref<string>("2024-12-21");
   const keyword = ref<string>("");
 
-  const titleContent = ref<string>("huhuh");
+  const titleContent = ref<string>("");
 
   const setContent = (newContent: number) => {
     content.value = newContent;

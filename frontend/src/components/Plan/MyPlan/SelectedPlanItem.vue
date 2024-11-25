@@ -1,11 +1,12 @@
 <script setup>
 import { defineProps } from "vue";
-import { dayStore, planStore } from "@/store/store";
+import { dayStore, planStore, attractionStore } from "@/store/store";
 import { storeToRefs } from "pinia";
 import { Trash2 } from "lucide-vue-next";
 
 const dStore = dayStore();
 const pStore = planStore();
+const aStore = attractionStore();
 const { selectedDay } = storeToRefs(dStore);
 
 const props = defineProps({
@@ -16,10 +17,17 @@ const props = defineProps({
 const deleteAttraction = (attractionNo) => {
   pStore.removeAttraction(selectedDay.value, attractionNo);
 };
+
+const handleClick = () => {
+  // console.log(props.attraction.latitude, " - ", props.attraction.longitude);
+  aStore.setLat(props.attraction.latitude);
+  aStore.setLng(props.attraction.longitude);
+};
 </script>
 
 <template>
   <div
+    @click="handleClick"
     class="group relative flex items-start gap-3 p-4 bg-white rounded-lg border border-gray-100 hover:border-gray-200 shadow-sm hover:shadow-md transition-all duration-200"
   >
     <!-- Number Badge -->
