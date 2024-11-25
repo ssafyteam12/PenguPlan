@@ -114,7 +114,7 @@ const onSubmit = () => {
         </div>
         <button
           @click="onSubmit"
-          class="mt-6 w-full py-3 rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 text-white text-sm font-semibold hover:opacity-90 transition-opacity duration-300"
+          class="mt-6 w-full py-3 rounded-lg bg-main-color hover:bg-hover-color text-white text-sm font-semibold hover:opacity-90 transition-opacity duration-300"
         >
           제출
         </button>

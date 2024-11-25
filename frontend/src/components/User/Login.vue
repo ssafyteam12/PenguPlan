@@ -80,7 +80,9 @@ const handleRegister = async () => {
           </div>
         </div>
 
-        <Button type="submit" class="w-full"> 로그인 </Button>
+        <Button type="submit" class="w-full bg-main-color hover:bg-hover-color">
+          로그인
+        </Button>
         <div
           class="text-xs mt-5 flex justify-center gap-5 decoration-gray-400 text-gray-400"
         >
@@ -137,7 +139,9 @@ const handleRegister = async () => {
           </div>
         </div>
 
-        <Button type="submit" class="w-full"> 회원가입 </Button>
+        <Button type="submit" class="w-full bg-main-color hover:bg-hover-color">
+          회원가입
+        </Button>
         <div
           class="text-xs mt-5 flex justify-center gap-5 decoration-gray-400 text-gray-400"
         >

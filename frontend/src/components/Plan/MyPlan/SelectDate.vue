@@ -18,7 +18,7 @@ const { selectedDay, totalDay } = storeToRefs(store);
         class="py-2 px-3 rounded-lg text-sm font-medium transition-all duration-200 hover:scale-105 transform"
         :class="[
           selectedDay === day
-            ? 'bg-dark-color text-white shadow-md'
+            ? 'bg-main-color text-white shadow-md'
             : 'bg-gray-100 text-gray-600 hover:bg-gray-200',
         ]"
       >

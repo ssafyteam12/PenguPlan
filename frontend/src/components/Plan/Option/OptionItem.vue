@@ -80,7 +80,7 @@ const toggleHeart = async (no: number) => {
         <div class="flex justify-between items-start">
           <h3
             @click="showDetail = true"
-            class="text-lg font-semibold text-gray-800 hover:text-blue-600 transition-colors duration-200 cursor-pointer"
+            class="text-lg font-semibold text-gray-800 hover:text-hover-color transition-colors duration-200 cursor-pointer"
           >
             {{ attraction.title }}
           </h3>
