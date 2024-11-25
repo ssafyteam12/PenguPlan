@@ -81,7 +81,6 @@ const handleClick = (index: number) => {
             )
           "
         >
-          <!-- Attraction Image -->
           <img
             :src="attraction.image"
             @error="(e) => ((e.target as HTMLImageElement).src = NoImage)"
@@ -89,7 +88,6 @@ const handleClick = (index: number) => {
             class="w-32 h-24 object-cover rounded-lg flex-shrink-0"
           />
 
-          <!-- Attraction Details -->
           <div class="flex-1">
             <div class="flex justify-between items-start mb-2">
               <h4 class="text-lg font-medium">
