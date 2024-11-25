@@ -39,17 +39,17 @@ const handleRegister = async () => {
   <div
     class="flex-col gap-7 my-10 bg-white rounded-lg shadow-lg overflow-hidden w-[400px] mx-auto"
   >
-    <div class="text-3xl">SSAFY TRIP</div>
+    <div class="text-3xl">PENGU TRIP</div>
     <div class="p-10">
       <!-- Login Form -->
       <form v-if="isLogin" @submit.prevent="handleLogin" class="space-y-5">
         <div>
-          <label class="text-sm font-medium text-gray-700">이름</label>
+          <label class="text-sm font-medium text-gray-700">아이디</label>
           <input
             v-model="loginForm.username"
             type="text"
             class="mt-1 w-full px-4 py-3 text-sm rounded-lg border border-gray-300 focus:ring-2 focus:ring-main-color focus:border-transparent transition-all duration-300"
-            placeholder="이름을 입력하세요"
+            placeholder="아이디를 입력하세요"
             required
           />
         </div>
@@ -90,12 +90,12 @@ const handleRegister = async () => {
       <!-- Register Form -->
       <form v-else @submit.prevent="handleRegister" class="space-y-5">
         <div>
-          <label class="text-sm font-medium text-gray-700">이름</label>
+          <label class="text-sm font-medium text-gray-700">아이디</label>
           <input
             v-model="registerForm.username"
             type="text"
             class="mt-1 w-full px-4 py-3 text-sm rounded-lg border border-gray-300 focus:ring-2 focus:ring-main-color focus:border-transparent transition-all duration-300"
-            placeholder="이름을 입력하세요."
+            placeholder="아이디를 입력하세요."
             required
           />
         </div>
