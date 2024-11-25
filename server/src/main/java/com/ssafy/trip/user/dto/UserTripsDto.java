@@ -3,14 +3,16 @@ package com.ssafy.trip.user.dto;
 import com.ssafy.trip.attraction.dto.AttractionDTO;
 import com.ssafy.trip.trips.dto.TripsDto;
 import com.ssafy.trip.trips.entity.Trips;
-import lombok.Getter;
-import lombok.Setter;
+import com.ssafy.trip.user.entity.User;
+import lombok.*;
 
 import java.util.List;
 
 
-@Setter
-@Getter
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserTripsDto {
     private Long tripId;
     private Long userId;
@@ -18,6 +20,7 @@ public class UserTripsDto {
     private int sidoCode;
     private String startDate;
     private String endDate;
+    private Boolean isPublic;
     private List<AttractionDTO> attractions;
 
 
@@ -30,6 +33,7 @@ public class UserTripsDto {
         userTripsDto.setStartDate(trips.getStartDate().toString());
         userTripsDto.setEndDate(trips.getEndDate().toString());
         userTripsDto.setAttractions(attractions);
+        userTripsDto.setIsPublic(trips.getIsPublic());
 
         return userTripsDto;
     }

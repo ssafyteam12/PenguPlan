@@ -36,4 +36,7 @@ public class Trips {
 
     @Column(nullable = false)
     private LocalDate endDate;
+
+    @Column(nullable = false)
+    private Boolean isPublic;
 }
