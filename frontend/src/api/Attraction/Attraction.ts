@@ -1,19 +1,34 @@
 import axios from "axios";
 import apiClient from "../ApiClient";
 import { Attraction, AttractionReview } from "@/type/type";
+import { planStore } from "@/store/store";
+import { storeToRefs } from "pinia";
 
 // 완료
 export const getAttractionBySidoGugun = async (
   sido: string,
   gugun: string,
-  content: string,
-  keyword: string
+  pContent: string,
+  pKeyword: string
 ) => {
+  const pStore = planStore();
+  const { sidoCode, content, keyword } = storeToRefs(pStore);
+
+  if (sido === "") {
+    sido = String(sidoCode.value);
+  }
+  if (pContent === "") {
+    pContent = String(content.value);
+  }
+  if (pKeyword === "") {
+    pKeyword = String(keyword.value);
+  }
+
   try {
     const response = await apiClient.get<Attraction[]>(
       "api/v1/attractions/search",
       {
-        params: { sido, gugun, content, keyword },
+        params: { sido, gugun, pContent, pKeyword },
       }
     );
     return response.data;
@@ -29,9 +44,22 @@ export const getAttractionByPosition = async (
   minLat: number,
   minLong: number
 ) => {
+  const pStore = planStore();
+  const { sidoCode, content, keyword } = storeToRefs(pStore);
+
+  const send = {
+    maxLat,
+    maxLong,
+    minLat,
+    minLong,
+    sidoCode: sidoCode.value,
+    content: content.value,
+    keyword: keyword.value,
+  };
+
   try {
     const response = await apiClient.get<Attraction[]>("/api/v1/attractions", {
-      params: { maxLat, maxLong, minLat, minLong },
+      params: send,
     });
     return response.data;
   } catch (error) {

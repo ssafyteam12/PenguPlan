@@ -1,12 +1,21 @@
 <script setup>
-import { defineProps } from "vue";
+import { defineProps, onMounted } from "vue";
 import KakaoMap from "@/components/Plan/Option/KakaoMap.vue";
 import Option from "@/components/Plan/Option/Option.vue";
 import Search from "@/components/Plan/Option/Search.vue";
 import PlanSideBar from "@/components/Plan/MyPlan/PlanSideBar.vue";
+import { planStore } from "@/store/store";
 
-defineProps({
+const pStore = planStore();
+
+const props = defineProps({
   isEdit: Boolean,
+});
+
+onMounted(() => {
+  if (!props.isEdit) {
+    pStore.initiate();
+  }
 });
 </script>
 

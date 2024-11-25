@@ -15,6 +15,8 @@ const emit = defineEmits(["submitForm"]);
 const pStore = planStore();
 const dStore = dayStore();
 import { storeToRefs } from "pinia";
+const { content, sidoCode } = storeToRefs(pStore);
+
 const { totalDay } = storeToRefs(dStore);
 const currentStep = ref(0);
 const selectedCity = ref(1);
