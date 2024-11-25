@@ -15,7 +15,15 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { deleteUserTripById } from "@/api/Plan/Plan";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+
+import { Switch } from "@/components/ui/switch";
+import { deleteUserTripById, putTripVisibility } from "@/api/Plan/Plan";
 
 const router = useRouter();
 const props = defineProps({
@@ -25,9 +33,16 @@ const props = defineProps({
   },
 });
 
+const isPublic = ref(props.trip.isPublic);
+
 const deletePlan = async (tripId) => {
   await deleteUserTripById(tripId);
   location.reload();
+};
+
+const handleSwitch = async (tripId) => {
+  isPublic.value = !isPublic.value;
+  await putTripVisibility(tripId);
 };
 </script>
 
@@ -59,6 +74,20 @@ const deletePlan = async (tripId) => {
               <span>{{ trip.attractions[0]?.addr1 || "주소 정보 없음" }}</span>
             </div>
           </div>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger>
+                <Switch
+                  :checked="ispublic"
+                  @update:checked="handleSwitch(trip.tripId)"
+                />
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>공개로 설정해보세요!</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+
           <div class="absolute bottom-4 right-4 flex space-x-2">
             <Button
               @click="router.push(`/myplan/${trip.tripId}`)"

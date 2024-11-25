@@ -74,10 +74,7 @@ export const copyTrip = async (tripId: number) => {
 };
 
 // 공개/비공개 설정 - 미완료
-export const updateTripVisibility = async (
-  tripId: number,
-  isPublic: boolean
-) => {
+export const putTripVisibility = async (tripId: number) => {
   try {
     const response = await apiClient.put(`/api/v1/trips/${tripId}/visibility`);
     return response.data;
