@@ -3,7 +3,8 @@ import {
   createWebHistory,
   createMemoryHistory,
 } from "vue-router";
-
+import { userStore } from "@/store/userStore";
+import { storeToRefs } from "pinia";
 import Layout from "@/components/layout/Layout.vue";
 import MainLayout from "../components/layout/MainLayout.vue";
 import MainView from "@/views/MainView.vue";
@@ -33,33 +34,44 @@ const routes = [
   {
     path: "/plan",
     component: PlanView,
-    meta: { layout: Layout },
+    meta: { layout: Layout, requiresAuth: true },
   },
   {
     path: "/trips",
     component: TripsView,
-    meta: { layout: Layout },
+    meta: { layout: Layout, requiresAuth: true },
   },
   {
     path: "/mypage",
     component: MyPageView,
-    meta: { layout: Layout },
+    meta: { layout: Layout, requiresAuth: true },
   },
   {
     path: "/myplan/:tripId",
     component: PlanDetailView,
-    meta: { layout: Layout },
+    meta: { layout: Layout, requiresAuth: true },
   },
   {
     path: "/editplan/:tripId",
     component: EditPlanView,
-    meta: { layout: Layout },
+    meta: { layout: Layout, requiresAuth: true },
   },
 ];
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  const uStore = userStore();
+  const { isLoggedIn } = storeToRefs(uStore);
+
+  if (to.meta.requiresAuth && !isLoggedIn.value) {
+    next({ path: "/login" });
+  } else {
+    next();
+  }
 });
 
 export default router;
