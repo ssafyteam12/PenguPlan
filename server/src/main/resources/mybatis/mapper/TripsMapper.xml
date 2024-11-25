@@ -51,6 +51,7 @@
                a.attraction_no, b.title, b.first_image1, b.addr1, b.latitude, b.longitude, a.day, a.sequence
         FROM (SELECT t.trip_id, t.user_id, t.content, t.sido_code, t.start_date, t.end_date, t.copied_count
         FROM trips t
+            WHERE t.is_public = 1
         LIMIT #{offset}, #{size}) c
                  LEFT JOIN trip_attractions a ON c.trip_id = a.trip_id
                  LEFT JOIN attractions b ON a.attraction_no = b.no
