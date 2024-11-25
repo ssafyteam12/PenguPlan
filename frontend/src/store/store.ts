@@ -50,9 +50,9 @@ export const planStore = defineStore("plan", () => {
   const plans = ref<{ [key: string]: Attraction[] }>({});
 
   const initiate = () => {
-    content.value = 1;
-    sidoCode.value = 1;
-    keyword.value = "";
+    // content.value = 1;
+    // sidoCode.value = 1;
+    // keyword.value = "";
     plans.value = {};
   };
 
