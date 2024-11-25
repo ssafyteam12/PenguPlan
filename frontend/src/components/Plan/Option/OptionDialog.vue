@@ -28,6 +28,10 @@ import {
 import NoImage from "@/assets/image/no-image.png";
 import OptionDialogNear from "./OptionDialogNear.vue";
 import OptionDialogReview from "./OptionDialogReview.vue";
+import { LottieAnimation } from "lottie-web-vue";
+import CirclePlane from "@/assets/lottie/CirclePlane.json";
+
+const animationContainer = ref(null);
 
 const props = defineProps({
   attractionNo: Number,
@@ -66,18 +70,25 @@ const handleAttractionClick = async (selectedAttraction) => {
   <Dialog open>
     <DialogTitle class="sr-only"> </DialogTitle>
 
-    <div v-if="isLoading">
-      <DialogTitle v-if="isLoading" class="sr-only"> </DialogTitle>
-      <DialogContent v-if="isLoading" class="max-w-4xl">
-        <DialogDescription>
+    <div v-if="isLoading" class="flex flex-col items-center justify-center">
+      <DialogTitle class="sr-only"></DialogTitle>
+      <DialogContent
+        class="max-w-4xl flex flex-col items-center justify-center"
+      >
+        <!-- Lottie 애니메이션을 표시할 컨테이너 -->
+        <div class="w-[500px] h-[500px] flex items-center justify-center">
+          <LottieAnimation
+            :animation-data="CirclePlane"
+            :auto-play="true"
+            :loop="true"
+            :speed="1"
+            class="w-full h-full"
+          />
+        </div>
+
+        <DialogDescription class="text-center mt-4">
           선택된 관광지의 상세 정보 및 관련 리뷰를 확인할 수 있습니다.
         </DialogDescription>
-        <div class="space-y-4">
-          <Skeleton class="h-8 w-3/4" />
-          <Skeleton class="h-[300px] w-full" />
-          <Skeleton class="h-4 w-full" />
-          <Skeleton class="h-4 w-2/3" />
-        </div>
       </DialogContent>
     </div>
 
