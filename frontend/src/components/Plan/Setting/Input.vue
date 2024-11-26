@@ -106,7 +106,7 @@ const onSubmit = () => {
       <!-- Step 3: 날짜 선택 -->
       <div class="w-[80%] mx-[10%] flex-shrink-0 p-6">
         <h2 class="text-2xl font-semibold text-gray-800 mb-6">
-          어디로 떠나시나요?
+          언제 떠나시나요?
         </h2>
 
         <div class="flex justify-center">

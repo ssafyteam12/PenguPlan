@@ -47,13 +47,17 @@ const handleClick = (index: number) => {
 
 <template>
   <div class="h-full overflow-y-auto p-6 bg-gray-50 relative">
-    <div class="flex justify-center gap-5 text-2xl font-bold mt-5">
-      {{ name }}
+    <div class="flex justify-between gap-5 text-2xl font-bold my-5">
       <Button
         variant="outline"
         @click="router.push(`/editplan/${route.params.tripId}`)"
       >
         수정하기
+      </Button>
+      {{ name }}
+
+      <Button variant="link" @click="router.push('/mypage')">
+        마이페이지
       </Button>
     </div>
 
