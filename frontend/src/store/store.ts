@@ -69,10 +69,15 @@ export const planStore = defineStore("plan", () => {
       const newId = plans.value[day].length + 1;
       plans.value[day].push({
         ...attraction,
-        sequence: newId,
+        //sequence: newId,
         day: Number(day),
       });
     }
+
+    plans.value[day] = plans.value[day].map((att, index) => ({
+      ...att,
+      sequence: index + 1,
+    }));
   };
 
   const removeAttraction = (day: string, attractionNo: number) => {
@@ -80,6 +85,21 @@ export const planStore = defineStore("plan", () => {
       plans.value[day] = plans.value[day].filter(
         (att) => att.no !== attractionNo
       );
+    }
+
+    plans.value[day] = plans.value[day].map((att, index) => ({
+      ...att,
+      sequence: index + 1,
+    }));
+  };
+
+  // sequence 재정렬을 위한 새로운 함수
+  const reorderAttractions = (day: string, attractions: Attraction[]) => {
+    if (plans.value[day]) {
+      plans.value[day] = attractions.map((att, index) => ({
+        ...att,
+        sequence: index + 1,
+      }));
     }
   };
 
