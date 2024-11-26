@@ -34,12 +34,12 @@ const handleLogout = () => {
   >
     <img
       src="/src/assets/image/penguin.png"
-      alt="SSAFY TRIP"
+      alt="SSAFY PLAN"
       class="w-8 h-8 mr-2"
     />
 
     <router-link to="/">
-      <div class="font-bold text-xl text-point-color">PENGUTRIP</div>
+      <div class="font-bold text-xl text-point-color">PENGU PLAN</div>
     </router-link>
     <nav class="hidden md:flex space-x-6 ml-6 items-center">
       <router-link to="/trips">

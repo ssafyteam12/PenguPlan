@@ -39,7 +39,7 @@ const handleLogout = () => {
     />
     <router-link to="/">
       <div class="font-bold text-xl text-dark-color drop-shadow-md">
-        PENGUTRIP
+        PENGU PLAN
       </div>
     </router-link>
 

@@ -45,7 +45,7 @@ const handleRegister = async () => {
   <div
     class="flex-col gap-7 my-10 bg-white rounded-lg shadow-lg overflow-hidden w-[400px] mx-auto"
   >
-    <div class="text-3xl">PENGU TRIP</div>
+    <div class="text-3xl">PENGU PLAN</div>
     <div class="p-10">
       <!-- Login Form -->
       <form v-if="isLogin" @submit.prevent="handleLogin" class="space-y-5">
