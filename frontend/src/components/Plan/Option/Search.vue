@@ -57,6 +57,7 @@ const handleSearch = async (e?: Event) => {
 
   pStore.setSidoCode(sidoCode);
   pStore.setContent(contentType);
+  pStore.setKeyword(keyword.value);
 
   const returnAttractions = await getAttractionBySidoGugun(
     sidoCode,

@@ -28,7 +28,7 @@ export const getAttractionBySidoGugun = async (
     const response = await apiClient.get<Attraction[]>(
       "api/v1/attractions/search",
       {
-        params: { sido, gugun, pContent, pKeyword },
+        params: { sido, gugun, content: pContent, keyword: pKeyword },
       }
     );
     return response.data;
