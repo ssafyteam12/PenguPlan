@@ -55,6 +55,9 @@ const handleSearch = async (e?: Event) => {
   const contentType =
     selectedContent.value === "all" ? "" : selectedContent.value;
 
+  pStore.setSidoCode(sidoCode);
+  pStore.setContent(contentType);
+
   const returnAttractions = await getAttractionBySidoGugun(
     sidoCode,
     sigunguCode,
