@@ -15,6 +15,7 @@ const props = defineProps({
 onMounted(() => {
   if (!props.isEdit) {
     pStore.initiate();
+    pStore.setKeyword("");
   }
 });
 </script>

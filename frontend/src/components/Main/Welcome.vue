@@ -120,7 +120,7 @@ onMounted(() => {
           <span class="cursor">|</span>
         </h1>
         <p class="text-xl md:text-2xl text-gray-600 max-w-2xl mx-auto mt-4">
-          PENGUTRIP과 함께하는 스마트한 여행 계획
+          PENGU PLAN과 함께하는 스마트한 여행 계획
         </p>
       </div>
 
